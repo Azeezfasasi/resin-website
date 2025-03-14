@@ -95,7 +95,8 @@ const editUser = async (userId, updatedData) => {
       const token = localStorage.getItem('token');
       console.log("API Base URL:", api);
       console.log("User ID:", userId);
-      const apiUrl = `<span class="math-inline">\{api\}/</span>{userId}`; // Corrected line
+      // const apiUrl = `<span class="math-inline">\{api\}/</span>{userId}`; // Corrected line
+      const apiUrl = api + "/" + userId;
       console.log("Edit User API URL:", apiUrl);
       const { data } = await axios.put(apiUrl, updatedData, {
           headers: { Authorization: `Bearer ${token}` },
