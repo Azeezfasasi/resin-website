@@ -149,7 +149,7 @@ const editUser = async (userId, updatedData) => {
   const resetUserPassword = async (userId, newPassword) => {
     try {
         const token = localStorage.getItem('token');
-        const apiUrl = api + "/users/" + userId + "/reset-password"; // Force string concatenation
+        const apiUrl = api + "/" + userId + "/reset-password"; // Corrected line
         console.log("Reset Password API URL:", apiUrl);
         await axios.patch(apiUrl, { newPassword }, {
             headers: { Authorization: `Bearer ${token}` },
