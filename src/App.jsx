@@ -24,6 +24,7 @@ import ResinRegistrationForm from "./app/ResinRegistrationForm";
 import ForgotPasswordForm from "./ForgotPasswordForm";
 import ResetPasswordForm from "./ResetPasswordForm";
 import TrackMyOders from "./app/TrackMyOrder";
+import UserManagement from "./app/UserManagement";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
           <Route path="/app/accountdetails" element={<ProtectedRoute><AccountDetails /></ProtectedRoute>} />
           <Route path="/app/editproduct/:id" element={<ProtectedRoute><EditProduct /></ProtectedRoute>} />
           <Route path="/myaccount" element={<ProtectedRoute><MyAccount /></ProtectedRoute>} />
+          <Route path="/app/usermanagement" element={<ProtectedRoute><UserManagement /></ProtectedRoute>} />
         </Routes>
       </Router>
     </>

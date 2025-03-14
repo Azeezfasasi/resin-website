@@ -77,7 +77,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <i class="fa-solid fa-chart-line"></i>
+            <i className="fa-solid fa-chart-line"></i>
             {isMenuOpen && <span className="w-full ml-4 mr-20 text-gray-700 dark:text-gray-300">Dashboard</span>}
           </NavLink>
 
@@ -89,7 +89,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <i class="fa-solid fa-cart-arrow-down"></i>
+            <i className="fa-solid fa-cart-arrow-down"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">My Orders</span>}
           </NavLink>
 
@@ -114,7 +114,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <i class="fa-solid fa-store"></i>
+            <i className="fa-solid fa-store"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Products</span>}
           </NavLink>
 
@@ -126,8 +126,20 @@ function MyAccountMenu() {
               }`
             }
           >
-            <i class="fa-solid fa-shop"></i>
+            <i className="fa-solid fa-shop"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Add Products</span>}
+          </NavLink>
+
+          <NavLink
+            to="/app/usermanagement"
+            className={({ isActive }) =>
+              `flex items-center p-4 dark:hover:bg-gray-700 ${
+                isActive ? "bg-gray-200 dark:bg-gray-700" : ""
+              }`
+            }
+          >
+            <i className="fa-solid fa-shop"></i>
+            {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Manage Users</span>}
           </NavLink>
 
           <NavLink
@@ -138,7 +150,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <i class="fa-solid fa-user"></i>
+            <i className="fa-solid fa-user"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Account Details</span>}
           </NavLink>
 
@@ -150,7 +162,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <i class="fa-solid fa-gear"></i>
+            <i className="fa-solid fa-gear"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Settings</span>}
           </NavLink>
 
@@ -162,7 +174,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <i className="fa-solid fa-arrow-right-from-bracket"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Log Out</span>}
           </NavLink>
           </>
@@ -180,7 +192,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <i class="fa-solid fa-chart-line"></i>
+            <i className="fa-solid fa-chart-line"></i>
             {isMenuOpen && <span className="w-full ml-4 mr-20 text-gray-700 dark:text-gray-300">Dashboard</span>}
           </NavLink>
 
@@ -204,7 +216,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <i class="fa-solid fa-user"></i>
+            <i className="fa-solid fa-user"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Account Details</span>}
           </NavLink>
 
@@ -216,7 +228,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <i class="fa-solid fa-gear"></i>
+            <i className="fa-solid fa-gear"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Settings</span>}
           </NavLink>
 
@@ -228,7 +240,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <i className="fa-solid fa-arrow-right-from-bracket"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Log Out</span>}
           </NavLink>
           </>

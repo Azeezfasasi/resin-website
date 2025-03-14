@@ -13,7 +13,6 @@ export const UserProvider = ({ children }) => {
     return storedUser ? JSON.parse(storedUser) : null;
 });
 
-  // const api = 'http://localhost:5000/api/users'; // Update with your backend URL
   const api = 'https://resin-backend.onrender.com/api/users'; // Update with your backend URL
 
   
@@ -74,18 +73,6 @@ export const UserProvider = ({ children }) => {
   };
 
   // Edit User Details
-  // const editUser = async (userId, updatedData) => {
-  //   try {
-  //     const token = localStorage.getItem('token');
-  //     const { data } = await axios.put(`${api}/${userId}`, updatedData, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     });
-  //     setUser((prev) => (prev._id === userId ? { ...prev, ...updatedData } : prev));
-  //     return data;
-  //   } catch (error) {
-  //     console.error('Failed to edit user', error);
-  //   }
-  // };
   const editUser = async (userId, updatedData) => {
     try {
         const token = localStorage.getItem('token');
