@@ -49,7 +49,7 @@ function MyAccountMenu() {
       <div className="flex items-center p-4 lg:hidden fixed top-[8px] md:hidden left-[0px] z-[50] bg-transparent">
         <i className="fa fa-bars" onClick={toggleMenu}></i>
       </div>
-      <div className="w-full flex border">
+      <div className="w-full h-screen flex border">
         <div
           className={`fixed lg:static top-[100px] md:top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 border-r shadow-lg transition-transform duration-300 z-40 mt-[-30px] md:mt-0 ${
             isMenuOpen ? "translate-x-0" : "-translate-x-full"
@@ -183,18 +183,6 @@ function MyAccountMenu() {
             <img src={heroarrow} alt="Dashboard" className="w-6 h-6" />
             {isMenuOpen && <span className="w-full ml-4 mr-20 text-gray-700 dark:text-gray-300">Dashboard</span>}
           </NavLink>
-
-          {/* <NavLink
-            to="/app/order"
-            className={({ isActive }) =>
-              `flex items-center p-4 dark:hover:bg-gray-700 ${
-                isActive ? "bg-gray-200 dark:bg-gray-700" : ""
-              }`
-            }
-          >
-            <img src={heroarrow} alt="Document" className="w-6 h-6" />
-            {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">My Orders</span>}
-          </NavLink> */}
 
           <NavLink
             to="/app/trackorders"

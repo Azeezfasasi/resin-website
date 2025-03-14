@@ -52,7 +52,7 @@ return (
         <div className='flex flex-row items-center justify-between w-full h-[fit-content]'>
             <div className='flex flex-col'>
                 <div className="text-primary-dark-shade text-left font-xl-semibold-font-family text-xl-semibold-font-size leading-xl-semibold-line-height font-xl-semibold-font-weight">Today’s Summary</div>
-                <div className="text-greys-blue-grey-700 text-left font-base-regular-font-family text-base-regular-font-size leading-base-regular-line-height font-base-regular-font-weight">Sales Summery</div>
+                {/* <div className="text-greys-blue-grey-700 text-left font-base-regular-font-family text-base-regular-font-size leading-base-regular-line-height font-base-regular-font-weight">Sales Summery</div> */}
             </div>
             <Link to="" className="flex items-center justify-center text-[#0f3659] text-xs sm:text-sm border w-[100px] h-10 rounded-[7px]">
                 Export

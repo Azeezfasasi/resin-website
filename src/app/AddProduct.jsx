@@ -59,7 +59,7 @@ const AddProduct = () => {
       </div>
       <div className="w-full flex flex-col items-start mt-0">
         <AccountHeader />
-        <div className="container mx-auto mt-8 mb-[80px] lg:mb-0">
+        <div className="container lg:h-[80vh] mx-auto mt-8 mb-[80px] lg:mb-0 overflow-y-scroll overflow-x-hidden">
             <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-md p-6">
             <h2 className="text-2xl font-semibold mb-6">Add Product</h2>
             {error && <div className="text-red-500 mb-4">{error}</div>}
@@ -158,7 +158,7 @@ const AddProduct = () => {
                 <div className="flex items-center justify-center">
                     <button
                         type="submit"
-                        className="bg-yellow-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-yellow-900 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         disabled={loading}
                     >
                         {loading ? "Adding Product..." : "Add Product"}

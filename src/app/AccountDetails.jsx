@@ -75,9 +75,9 @@ const { user, editUser } = useContext(UserContext);
       <div className='w-full flex flex-col justify-start md:items-center items-center'>
         <AccountHeader />
         {/* Account details section */}
-        <div className='w-[95%] lg:w-[55%]'>
+        <div className='w-[95%] lg:w-[55%] lg:h-[80vh] overflow-y-scroll overflow-x-hidden'>
           <h2 className='text-2xl font-semibold mb-6 mt-[25px] lg:mt-8'>Edit Account Details</h2>
-          <form onSubmit={handleSubmit} className='w-full space-y-4 grid grid-cols-1 gap-4'>
+          <form onSubmit={handleSubmit} className='w-full space-y-4 grid grid-cols-1 gap-4 lg:mb-[30px]'>
 
             {/* First name */}
             <div>
@@ -142,7 +142,7 @@ const { user, editUser } = useContext(UserContext);
               />
             </div>
             {/* Add other input fields for user properties */}
-            <button type="submit" className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Save Changes</button>
+            <button type="submit" className='bg-yellow-900 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Save Changes</button>
           </form>
         </div>
       </div>

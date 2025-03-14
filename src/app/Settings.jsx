@@ -88,8 +88,6 @@ function Settings() {
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     >
                       <option value="en">English</option>
-                      <option value="es">Spanish</option>
-                      <option value="fr">French</option>
                       {/* Add more language options as needed */}
                     </select>
                   </div>

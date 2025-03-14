@@ -30,19 +30,19 @@ function AccountHeader() {
             </div>
 
             {/* search */}
-            <div className='relative hidden md:block'>
+            {/* <div className='relative hidden md:block'>
                 <input type='search' placeholder=' Search here' className="bg-grey-300 rounded-2xl pt-0.5 pr-8 pb-0.5 pl-6 flex flex-row gap-2 items-center justify-start h-[60px] relative border" />
                     <img className="absolute top-[15px] left-0"
                     src={magnifier}
                     />
-            </div>
+            </div> */}
 
             {/* Language */}
-            <div className="pr-4 pl-4 md:flex flex-row gap-4 items-center justify-center h-[60px] relative border hidden">
+            {/* <div className="pr-4 pl-4 md:flex flex-row gap-4 items-center justify-center h-[60px] relative border hidden">
                 <select className=" flex-row gap-3.5 items-center justify-start shrink-0 relative">
                     <option value="">Eng (US)</option>
                 </select>
-            </div>
+            </div> */}
 
             <div className="relative w-full md:w-[298px] h-[60px] flex flex-row items-center md:justify-start justify-end mr-6 md:mr-0">
                 {/* Notification Icon */}

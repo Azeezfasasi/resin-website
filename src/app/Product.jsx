@@ -71,11 +71,11 @@ function Product() {
                 </div>
 
                 {/* Main Account Section */}
-                <div className='w-full flex flex-col justify-start h-screen'>
+                <div className='w-full flex flex-col justify-start h-screen overflow-y-scroll overflow-x-hidden'>
                     <AccountHeader />
                     <div className='w-[90%] flex flex-row justify-between items-center mb-[50px] m-auto mt-10'>
                         <h1 className='text-2xl font-bold'>Products</h1>
-                        <Link to="/app/addproduct" className='bg-yellow-800 text-white px-4 py-2 rounded-md'>Add Product</Link>
+                        <Link to="/app/addproduct" className='bg-yellow-800 hover:bg-yellow-600 text-white px-4 py-2 rounded-md'>Add Product</Link>
                     </div>
 
                      {/* Display Total Products */}
@@ -126,7 +126,7 @@ function Product() {
 
                     {/* Pagination Controls */}
                     {totalPages > 1 && (
-                        <div className="flex justify-center items-center gap-4 mt-6">
+                        <div className="flex justify-center items-center gap-4 mt-6 mb-[110px] lg:mb-0">
                             <button
                                 className={`px-4 py-2 rounded-md border ${currentPage === 1 ? "bg-gray-300 cursor-not-allowed" : "bg-yellow-800 text-white"}`}
                                 onClick={handlePrevPage}
@@ -150,7 +150,7 @@ function Product() {
                     <br />
                 </div>
             </div>
-            {/* <MobileFooter /> */}
+            <MobileFooter />
             <WhatsAppChatRibbon />
         </>
     );

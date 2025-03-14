@@ -77,14 +77,14 @@ const Order = () => {
 
             <div className='w-full flex flex-col'>
                 <AccountHeader />
-              <div className="w-[95%] lg:w-[80%] mx-auto mt-8">
+              <div className="w-[95%] lg:w-[80%] mx-auto mt-8 lg:h-[80vh] overflow-y-scroll overflow-x-hidden">
                 <h2 className="text-2xl font-semibold mb-6">Order History</h2>
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex flex-col lg:flex-row justify-between items-center gap-4 mb-4">
                     <p className="font-semibold">Total Orders: <span className="text-blue-600">{totalOrders}</span></p>
                     <div className="flex items-center">
-                        <button onClick={prevPage} disabled={currentPage === 1} className="px-3 py-1 bg-yellow-800 text-white rounded-l-md disabled:opacity-50">Previous</button>
+                        <button onClick={prevPage} disabled={currentPage === 1} className="px-3 py-1 bg-yellow-800 text-white rounded disabled:opacity-50">Previous</button>
                         <span className="mx-2">Page {currentPage} of {Math.ceil(totalOrders / ordersPerPage)}</span>
-                        <button onClick={nextPage} disabled={currentPage === Math.ceil(totalOrders / ordersPerPage)} className="px-3 py-1 bg-yellow-800 rounded-r-md disabled:opacity-50 text-white">Next</button>
+                        <button onClick={nextPage} disabled={currentPage === Math.ceil(totalOrders / ordersPerPage)} className="px-3 py-1 bg-yellow-800 rounded disabled:opacity-50 text-white">Next</button>
                     </div>
                 </div>
                 <div className="overflow-x-auto">
@@ -129,9 +129,9 @@ const Order = () => {
                     </table>
                 </div>
                 <div className="flex justify-center items-center mt-6">
-                    <button onClick={prevPage} disabled={currentPage === 1} className="px-3 py-1 bg-yellow-800 text-white rounded-l-md disabled:opacity-50">Previous</button>
+                    <button onClick={prevPage} disabled={currentPage === 1} className="px-3 py-1 bg-yellow-800 text-white rounded disabled:opacity-50">Previous</button>
                     <span className="mx-2">Page {currentPage} of {Math.ceil(totalOrders / ordersPerPage)}</span>
-                    <button onClick={nextPage} disabled={currentPage === Math.ceil(totalOrders / ordersPerPage)} className="px-3 py-1 bg-yellow-800 text-white rounded-r-md disabled:opacity-50">Next</button>
+                    <button onClick={nextPage} disabled={currentPage === Math.ceil(totalOrders / ordersPerPage)} className="px-3 py-1 bg-yellow-800 text-white rounded disabled:opacity-50">Next</button>
                 </div></div>
             </div>
         </div>
