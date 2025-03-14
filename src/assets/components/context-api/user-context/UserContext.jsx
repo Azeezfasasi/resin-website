@@ -73,22 +73,43 @@ export const UserProvider = ({ children }) => {
   };
 
   // Edit User Details
-  const editUser = async (userId, updatedData) => {
-    try {
-        const token = localStorage.getItem('token');
-        const { data } = await axios.put(`${api}/${userId}`, updatedData, {
-            headers: { Authorization: `Bearer ${token}` },
-        });
-        // After successful edit, fetch the updated user and update context
-        const { data: updatedUser } = await axios.get(`${api}/me`, {
-            headers: { Authorization: `Bearer ${token}` },
-        });
-        setUser(updatedUser);
-        return data;
-    } catch (error) {
-        console.error('Failed to edit user', error);
-        throw error;
-    }
+//   const editUser = async (userId, updatedData) => {
+//     try {
+//         const token = localStorage.getItem('token');
+//         const { data } = await axios.put(`${api}/${userId}`, updatedData, {
+//             headers: { Authorization: `Bearer ${token}` },
+//         });
+//         // After successful edit, fetch the updated user and update context
+//         const { data: updatedUser } = await axios.get(`${api}/me`, {
+//             headers: { Authorization: `Bearer ${token}` },
+//         });
+//         setUser(updatedUser);
+//         return data;
+//     } catch (error) {
+//         console.error('Failed to edit user', error);
+//         throw error;
+//     }
+// };
+const editUser = async (userId, updatedData) => {
+  try {
+      const token = localStorage.getItem('token');
+      console.log("Token from localStorage:", token); // Debugging line
+      if (!token) {
+          console.error("No token found in localStorage.");
+          throw new Error("No token found");
+      }
+      const { data } = await axios.put(`<span class="math-inline">\{api\}/</span>{userId}`, updatedData, {
+          headers: { Authorization: `Bearer ${token}` },
+      });
+      const { data: updatedUser } = await axios.get(`${api}/me`, {
+          headers: { Authorization: `Bearer ${token}` },
+      });
+      setUser(updatedUser);
+      return data;
+  } catch (error) {
+      console.error('Failed to edit user', error);
+      throw error;
+  }
 };
 
   // Change User Role (Admin Feature)
