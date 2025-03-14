@@ -55,8 +55,6 @@ function UserManagement() {
     }
   };
 
-//   if (loading) return <div className='h-screen flex flex-row justify-center items-center font-semibold text-[24px] text-yellow-900'>Loading users...</div>;
-//   if (loading) return <div>Loading users...</div>;
   if (error) return <div>{error}</div>;
 
   return (
@@ -91,13 +89,13 @@ function UserManagement() {
                     </thead>
                     <tbody>
                         {users.map((user) => (
-                        <tr key={user._id}>
-                            <td>{user.firstName}</td>
-                            <td>{user.lastName}</td>
-                            <td>{user.email}</td>
-                            <td>{user.role}</td>
-                            <td>{user.disabled ? 'Disabled' : 'Enabled'}</td>
-                            <td>
+                        <tr key={user._id} className='border'>
+                            <td className='border'>{user.firstName}</td>
+                            <td className='border'>{user.lastName}</td>
+                            <td className='border'>{user.email}</td>
+                            <td className='border'>{user.role}</td>
+                            <td className='border'>{user.disabled ? 'Disabled' : 'Enabled'}</td>
+                            <td className='border'>
                             <button onClick={() => handleResetPassword(user._id, 'defaultPassword')}>
                                 Reset Password
                             </button>
