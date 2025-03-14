@@ -149,7 +149,9 @@ const editUser = async (userId, updatedData) => {
   const resetUserPassword = async (userId, newPassword) => {
     try {
         const token = localStorage.getItem('token');
-        await axios.patch(`<span class="math-inline">\{api\}/users/</span>{userId}/reset-password`, { newPassword }, {
+        const apiUrl = api + "/users/" + userId + "/reset-password"; // Force string concatenation
+        console.log("Reset Password API URL:", apiUrl);
+        await axios.patch(apiUrl, { newPassword }, {
             headers: { Authorization: `Bearer ${token}` },
         });
     } catch (error) {
@@ -211,15 +213,15 @@ const forgotPassword = async (email) => {
 };
 
 // Reset Password with Token
-// const resetPassword = async (token, newPassword) => {
-//   try {
-//     const { data } = await axios.post(`${api}/reset-password`, { token, newPassword });
-//     return data; // Backend should confirm the password has been reset
-//   } catch (error) {
-//     console.error('Failed to reset password', error);
-//     throw error;
-//   }
-// };
+const resetPassword = async (token, newPassword) => {
+  try {
+    const { data } = await axios.post(`${api}/reset-password`, { token, newPassword });
+    return data; // Backend should confirm the password has been reset
+  } catch (error) {
+    console.error('Failed to reset password', error);
+    throw error;
+  }
+};
 
   return (
     <UserContext.Provider
@@ -237,7 +239,8 @@ const forgotPassword = async (email) => {
         deleteUser,
         addNewUser,
         forgotPassword,
-        resetPassword,
+        resetUserPassword,
+        resetPassword
       }}
     >
       {children}
