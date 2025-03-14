@@ -175,8 +175,10 @@ const editUser = async (userId, updatedData) => {
   const deleteUser = async (userId) => {
     try {
         const token = localStorage.getItem('token');
-        console.log("Deleting user with ID:", userId); // Add this line
-        await axios.delete(`<span class="math-inline">\{api\}/</span>{userId}`, {
+        console.log("Deleting user with ID:", userId);
+        const apiUrl = api + "/" + userId; // Force string concatenation
+        console.log("Delete User API URL:", apiUrl);
+        await axios.delete(apiUrl, {
             headers: { Authorization: `Bearer ${token}` },
         });
         setUsers((prev) => prev.filter((u) => u._id !== userId));
