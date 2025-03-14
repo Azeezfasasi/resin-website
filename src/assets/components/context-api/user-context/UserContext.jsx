@@ -93,11 +93,14 @@ export const UserProvider = ({ children }) => {
 const editUser = async (userId, updatedData) => {
   try {
       const token = localStorage.getItem('token');
+      console.log("Token:", token);
       console.log("API Base URL:", api);
       console.log("User ID:", userId);
       // const apiUrl = `<span class="math-inline">\{api\}/</span>{userId}`; // Corrected line
-      const apiUrl = api + "/" + userId;
+      const apiUrl = "https://resin-backend.onrender.com/api/users/" + userId;
+      // const apiUrl = api + "/" + userId;
       console.log("Edit User API URL:", apiUrl);
+      console.log("API Base URL:", api, typeof api);
       const { data } = await axios.put(apiUrl, updatedData, {
           headers: { Authorization: `Bearer ${token}` },
       });
