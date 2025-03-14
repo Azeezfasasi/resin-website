@@ -77,7 +77,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Dashboard" className="w-6 h-6" />
+            <i class="fa-solid fa-chart-line"></i>
             {isMenuOpen && <span className="w-full ml-4 mr-20 text-gray-700 dark:text-gray-300">Dashboard</span>}
           </NavLink>
 
@@ -89,7 +89,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Document" className="w-6 h-6" />
+            <i class="fa-solid fa-cart-arrow-down"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">My Orders</span>}
           </NavLink>
 
@@ -101,7 +101,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Document" className="w-6 h-6" />
+            <i className='fa fa-truck'></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Track your Orders</span>}
           </NavLink>
 
@@ -114,7 +114,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Document" className="w-6 h-6" />
+            <i class="fa-solid fa-store"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Products</span>}
           </NavLink>
 
@@ -126,7 +126,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Document" className="w-6 h-6" />
+            <i class="fa-solid fa-shop"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Add Products</span>}
           </NavLink>
 
@@ -138,7 +138,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Document" className="w-6 h-6" />
+            <i class="fa-solid fa-user"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Account Details</span>}
           </NavLink>
 
@@ -150,7 +150,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Document" className="w-6 h-6" />
+            <i class="fa-solid fa-gear"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Settings</span>}
           </NavLink>
 
@@ -162,7 +162,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Document" className="w-6 h-6" />
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Log Out</span>}
           </NavLink>
           </>
@@ -180,7 +180,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Dashboard" className="w-6 h-6" />
+            <i class="fa-solid fa-chart-line"></i>
             {isMenuOpen && <span className="w-full ml-4 mr-20 text-gray-700 dark:text-gray-300">Dashboard</span>}
           </NavLink>
 
@@ -192,7 +192,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Document" className="w-6 h-6" />
+            <i className='fa fa-truck'></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Track your Orders</span>}
           </NavLink>
 
@@ -204,7 +204,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Document" className="w-6 h-6" />
+            <i class="fa-solid fa-user"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Account Details</span>}
           </NavLink>
 
@@ -216,7 +216,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Document" className="w-6 h-6" />
+            <i class="fa-solid fa-gear"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Settings</span>}
           </NavLink>
 
@@ -228,7 +228,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <img src={heroarrow} alt="Document" className="w-6 h-6" />
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Log Out</span>}
           </NavLink>
           </>

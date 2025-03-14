@@ -29,21 +29,7 @@ function AccountHeader() {
             Dashboard
             </div>
 
-            {/* search */}
-            {/* <div className='relative hidden md:block'>
-                <input type='search' placeholder=' Search here' className="bg-grey-300 rounded-2xl pt-0.5 pr-8 pb-0.5 pl-6 flex flex-row gap-2 items-center justify-start h-[60px] relative border" />
-                    <img className="absolute top-[15px] left-0"
-                    src={magnifier}
-                    />
-            </div> */}
-
-            {/* Language */}
-            {/* <div className="pr-4 pl-4 md:flex flex-row gap-4 items-center justify-center h-[60px] relative border hidden">
-                <select className=" flex-row gap-3.5 items-center justify-start shrink-0 relative">
-                    <option value="">Eng (US)</option>
-                </select>
-            </div> */}
-
+            {/* Notification */}
             <div className="relative w-full md:w-[298px] h-[60px] flex flex-row items-center md:justify-start justify-end mr-6 md:mr-0">
                 {/* Notification Icon */}
                 <div className="mr-[20px] ml-[80px] md:ml-0 md:mr-[30px]">
@@ -80,28 +66,39 @@ function AccountHeader() {
                 {isDropdownOpen && (
                     <div className="absolute top-[55px] right-0 mt-2 w-[200px] bg-white rounded-lg shadow-lg">
                     <ul className="py-2">
-                        <Link to="/app/accountdetails">
-                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        <Link to="/app/accountdetails" className='flex flex-row justify-start items-center gap-2 px-4 py-2'>
+                            <i className='fa fa-user'></i>
+                            <li className="hover:bg-gray-100 cursor-pointer">
                             Profile
                             </li>
                         </Link>
-                        <Link to="/app/trackorders">
-                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        <Link to="/app/trackorders" className='flex flex-row justify-start items-center gap-2 px-4 py-2'>
+                            <i className='fa fa-truck'></i>
+                            <li className="hover:bg-gray-100 cursor-pointer">
                             Track Order
                             </li>
                         </Link>
-                        <Link to="/app/order">
-                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        <Link to="/app/order" className='flex flex-row justify-start items-center gap-2 px-4 py-2'>
+                            <i class="fa-solid fa-cart-arrow-down"></i>
+                            <li className="hover:bg-gray-100 cursor-pointer">
                             Manage Orders
                             </li>
                         </Link>
-                        <Link to="/app/settings">
-                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        <Link to="/app/product" className='flex flex-row justify-start items-center gap-2 px-4 py-2'>
+                            <i class="fa-solid fa-store"></i>
+                            <li className="hover:bg-gray-100 cursor-pointer">
+                            Manage Products
+                            </li>
+                        </Link>
+                        <Link to="/app/settings" className='flex flex-row justify-start items-center gap-2 px-4 py-2'>
+                            <i class="fa-solid fa-gear"></i>
+                            <li className="hover:bg-gray-100 cursor-pointer">
                             Settings
                             </li>
                         </Link>
-                        <div onClick={handleLogout}>
-                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        <div onClick={handleLogout} className='flex flex-row justify-start items-center gap-2 px-4 py-2'>
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <li className="hover:bg-gray-100 cursor-pointer">
                             Logout
                             </li>
                         </div>

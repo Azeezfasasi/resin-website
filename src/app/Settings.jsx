@@ -33,10 +33,10 @@ function Settings() {
       </div>
 
       {/* Main Account Section */}
-      <div className='w-[100%] md:w-[80%] flex flex-col items-start justify-start '>
+      <div className='w-[100%] md:w-[80%] h-screen flex flex-col items-start justify-start'>
         <AccountHeader />
-        <div className="w-[95%] lg:w-[60%] self-center flex-1 flex flex-col p-4">
-          <div className="container mx-auto mt-8">
+        <div className="w-[95%] lg:w-[60%] self-center flex-1 flex flex-col p-4 overflow-hidden">
+          <div className="container mx-auto mt-8 lg:h-[80vh] overflow-y-scroll overflow-x-hidden">
               <h2 className="text-2xl font-semibold mb-6">Settings</h2>
               <div className="bg-white shadow-md rounded-md p-6 mb-8">
                 <h3 className="text-lg font-semibold mb-4">Account</h3>
