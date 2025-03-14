@@ -34,6 +34,16 @@ function UserManagement() {
     }
   };
 
+  const handleToggleUserStatus = async (user) => {
+    try {
+        const updatedUser = {...user, disabled: !user.disabled};
+        await editUser(user._id, updatedUser);
+        await fetchUsers();
+    } catch (err) {
+        alert('Failed to toggle user status.');
+    }
+  };
+
   const handleDeleteUser = async (userId) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
@@ -73,7 +83,7 @@ function UserManagement() {
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Role</th>
-                        <th>Reset Password</th>
+                        <th>Status</th>
                         <th>Actions</th>
                         </tr>
                     </thead>
@@ -84,13 +94,15 @@ function UserManagement() {
                             <td className='border'>{user.lastName}</td>
                             <td className='border'>{user.email}</td>
                             <td className='border'>{user.role}</td>
+                            <td className='border'>{user.disabled ? 'Disabled' : 'Enabled'}</td>
                             <td className='border'>
                             <button onClick={() => handleResetPassword(user._id, 'defaultPassword')}>
                                 Reset Password
                             </button>
-                            </td>
-                            <td className='border'>
-                                <button onClick={() => handleDeleteUser(user._id)}>Delete User</button>
+                            <button onClick={() => handleToggleUserStatus(user)}>
+                                {user.disabled ? 'Enable' : 'Disable'}
+                            </button>
+                            <button onClick={() => handleDeleteUser(user._id)}>Delete</button>
                             </td>
                         </tr>
                         ))}
