@@ -161,17 +161,29 @@ const editUser = async (userId, updatedData) => {
   };
 
   // Delete User (Admin Feature)
+  // const deleteUser = async (userId) => {
+  //   try {
+  //     const token = localStorage.getItem('token');
+  //     await axios.delete(`${api}/${userId}`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+  //     setUsers((prev) => prev.filter((u) => u._id !== userId));
+  //   } catch (error) {
+  //     console.error('Failed to delete user', error);
+  //   }
+  // };
   const deleteUser = async (userId) => {
     try {
-      const token = localStorage.getItem('token');
-      await axios.delete(`${api}/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setUsers((prev) => prev.filter((u) => u._id !== userId));
+        const token = localStorage.getItem('token');
+        console.log("Deleting user with ID:", userId); // Add this line
+        await axios.delete(`<span class="math-inline">\{api\}/</span>{userId}`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        setUsers((prev) => prev.filter((u) => u._id !== userId));
     } catch (error) {
-      console.error('Failed to delete user', error);
+        console.error('Failed to delete user', error);
     }
-  };
+};
 
   // Add New User from Admin Dashboard
   const addNewUser = async (newUser) => {
