@@ -55,7 +55,8 @@ function UserManagement() {
     }
   };
 
-  if (loading) return <div className='h-screen flex flex-row justify-center items-center font-semibold text-[24px] text-yellow-900'>Loading users...</div>;
+//   if (loading) return <div className='h-screen flex flex-row justify-center items-center font-semibold text-[24px] text-yellow-900'>Loading users...</div>;
+//   if (loading) return <div>Loading users...</div>;
   if (error) return <div>{error}</div>;
 
   return (
