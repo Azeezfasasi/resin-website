@@ -154,7 +154,7 @@ function MyAccountMenu() {
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Account Details</span>}
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/app/settings"
             className={({ isActive }) =>
               `flex items-center p-4 dark:hover:bg-gray-700 ${
@@ -164,7 +164,7 @@ function MyAccountMenu() {
           >
             <i className="fa-solid fa-gear"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Settings</span>}
-          </NavLink>
+          </NavLink> */}
 
           <NavLink onClick={handleLogout}
             to="/"
@@ -220,7 +220,7 @@ function MyAccountMenu() {
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Account Details</span>}
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/app/settings"
             className={({ isActive }) =>
               `flex items-center p-4 dark:hover:bg-gray-700 ${
@@ -230,7 +230,7 @@ function MyAccountMenu() {
           >
             <i className="fa-solid fa-gear"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Settings</span>}
-          </NavLink>
+          </NavLink> */}
 
           <NavLink onClick={handleLogout}
             to="/"

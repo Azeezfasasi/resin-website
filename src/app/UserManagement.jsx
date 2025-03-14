@@ -60,6 +60,19 @@ function UserManagement() {
     }
   };
 
+  const handleRoleChange = async (user) => {
+    const newRole = prompt(`Enter new role for ${user.firstName} ${user.lastName} (Admin or Customer):`);
+    if (newRole) {
+      try {
+        await changeUserRole(user._id, newRole);
+        await fetchUsers(); // Refresh user list
+        alert('User role updated successfully.');
+      } catch (err) {
+        alert('Failed to update user role.');
+      }
+    }
+  };
+
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
@@ -78,9 +91,9 @@ function UserManagement() {
         </div>
 
         {/* Main Account details Section */}
-        <div className="w-full flex flex-col justify-start md:items-center items-center">
+        <div className="w-full flex flex-col justify-start md:items-center items-center overflow-x-hidden overflow-y-hidden">
           <AccountHeader />
-          <div className="w-[90%] flex flex-col items-center justify-start self-center mx-auto overflow-x-auto">
+          <div className="w-[90%] flex flex-col items-center justify-start self-center mx-auto overflow-x-auto overflow-y-hidden">
             <h2 className="text-2xl font-semibold mb-4">User Management</h2>
             {currentUsers.length === 0 ? (
               <div className="p-4">No users found on this page.</div>
@@ -94,6 +107,7 @@ function UserManagement() {
                       <th className="p-2 border text-left">Email</th>
                       <th className="p-2 border text-left">Role</th>
                       <th className="p-2 border text-left">Status</th>
+                      <th className="p-2 border text-left">Change Roles</th>
                       <th className="p-2 border text-center">Password Actions</th>
                       <th className="p-2 border text-center">Disable Actions</th>
                       <th className="p-2 border text-center">Delete Actions</th>
@@ -107,6 +121,14 @@ function UserManagement() {
                         <td className="p-2 border">{user.email}</td>
                         <td className="p-2 border">{user.role}</td>
                         <td className="p-2 border">{user.disabled ? 'Disabled' : 'Enabled'}</td>
+                        <td className="p-2 border text-center">
+                          <button
+                            onClick={() => handleRoleChange(user)}
+                            className="bg-purple-500 hover:bg-purple-700 text-white py-1 px-3 rounded"
+                          >
+                            Change
+                          </button>
+                        </td>
                         <td className="p-2 border text-center">
                           <button
                             onClick={() => handleResetPassword(user._id)}

@@ -73,30 +73,12 @@ export const UserProvider = ({ children }) => {
   };
 
   // Edit User Details
-//   const editUser = async (userId, updatedData) => {
-//     try {
-//         const token = localStorage.getItem('token');
-//         const { data } = await axios.put(`${api}/${userId}`, updatedData, {
-//             headers: { Authorization: `Bearer ${token}` },
-//         });
-//         // After successful edit, fetch the updated user and update context
-//         const { data: updatedUser } = await axios.get(`${api}/me`, {
-//             headers: { Authorization: `Bearer ${token}` },
-//         });
-//         setUser(updatedUser);
-//         return data;
-//     } catch (error) {
-//         console.error('Failed to edit user', error);
-//         throw error;
-//     }
-// };
 const editUser = async (userId, updatedData) => {
   try {
       const token = localStorage.getItem('token');
       console.log("Token:", token);
       console.log("API Base URL:", api);
       console.log("User ID:", userId);
-      // const apiUrl = `<span class="math-inline">\{api\}/</span>{userId}`; // Corrected line
       const apiUrl = "https://resin-backend.onrender.com/api/users/" + userId;
       // const apiUrl = api + "/" + userId;
       console.log("Edit User API URL:", apiUrl);
@@ -116,17 +98,30 @@ const editUser = async (userId, updatedData) => {
 };
 
   // Change User Role (Admin Feature)
+  // const changeUserRole = async (userId, newRole) => {
+  //   try {
+  //     const token = localStorage.getItem('token');
+  //     const { data } = await axios.patch(
+  //       `${api}/${userId}/role`,
+  //       { role: newRole },
+  //       { headers: { Authorization: `Bearer ${token}` } }
+  //     );
+  //     return data;
+  //   } catch (error) {
+  //     console.error('Failed to change user role', error);
+  //   }
+  // };
   const changeUserRole = async (userId, newRole) => {
     try {
       const token = localStorage.getItem('token');
-      const { data } = await axios.patch(
-        `${api}/${userId}/role`,
+      await axios.patch(
+        `<span class="math-inline">\{api\}/</span>{userId}`, // Assuming your editUser route handles role changes
         { role: newRole },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      return data;
     } catch (error) {
       console.error('Failed to change user role', error);
+      throw error;
     }
   };
 
@@ -161,31 +156,18 @@ const editUser = async (userId, updatedData) => {
 };
 
   // Delete User (Admin Feature)
-  // const deleteUser = async (userId) => {
-  //   try {
-  //     const token = localStorage.getItem('token');
-  //     await axios.delete(`${api}/${userId}`, {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     });
-  //     setUsers((prev) => prev.filter((u) => u._id !== userId));
-  //   } catch (error) {
-  //     console.error('Failed to delete user', error);
-  //   }
-  // };
   const deleteUser = async (userId) => {
     try {
-        const token = localStorage.getItem('token');
-        console.log("Deleting user with ID:", userId);
-        const apiUrl = api + "/" + userId; // Force string concatenation
-        console.log("Delete User API URL:", apiUrl);
-        await axios.delete(apiUrl, {
-            headers: { Authorization: `Bearer ${token}` },
-        });
-        setUsers((prev) => prev.filter((u) => u._id !== userId));
+      const token = localStorage.getItem('token');
+      await axios.delete(`${api}/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setUsers((prev) => prev.filter((u) => u._id !== userId));
     } catch (error) {
-        console.error('Failed to delete user', error);
+      console.error('Failed to delete user', error);
     }
-};
+  };
+
 
   // Add New User from Admin Dashboard
   const addNewUser = async (newUser) => {
