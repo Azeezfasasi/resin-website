@@ -3,6 +3,7 @@ import { UserContext } from '../assets/components/context-api/user-context/UserC
 import { Helmet } from 'react-helmet';
 import AccountHeader from '../assets/components/account-components/AccountHeader';
 import MyAccountMenu from '../assets/components/account-components/MyAccountMenu';
+import MobileFooter from '../assets/components/home-components/MobileFooter';
 
 const EditCurrentUser = () => {
 const { user, editUser } = useContext(UserContext);
@@ -146,6 +147,7 @@ const { user, editUser } = useContext(UserContext);
         </div>
       </div>
     </div>
+    <MobileFooter />
     </>
   );
 };

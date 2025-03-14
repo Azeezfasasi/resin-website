@@ -37,7 +37,7 @@ function MainHeader() {
           <Link to="" className="text-left uppercase">
             Wishlist
           </Link>
-          <Link to="/login" className="text-left uppercase border px-5 py-3">
+          <Link to="/app/myaccount" className="text-left uppercase border px-5 py-3">
             <i className="fa fa-user"></i>
           </Link>
           <CartIcon />
@@ -49,7 +49,7 @@ function MainHeader() {
              <CartIcon />
           </div>
           <div className="mr-8">
-            <Link to="/login" className="text-left uppercase border px-5 py-3">
+            <Link to="/app/myaccount" className="text-left uppercase border px-5 py-3">
               <i className="fa fa-user"></i>
             </Link>
           </div>
@@ -80,7 +80,7 @@ function MainHeader() {
           <Link to="" className="text-left uppercase">
             Wishlist
           </Link>
-          <Link to="/app/login" className="text-left uppercase border px-5 py-3">
+          <Link to="/app/myaccount" className="text-left uppercase border px-5 py-3">
             <i className="fa fa-user"></i>
           </Link>
           <CartIcon />

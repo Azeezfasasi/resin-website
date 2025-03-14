@@ -50,7 +50,7 @@ const ObjectWithSense = () => {
                                         <p className="text-gray-600">₦{product.price}</p>
                                     </div>
                                     <div className="mt-6 flex flex-col items-center">
-                                        <Link to={`/app/product/${product._id}`} className="mt-2 w-full bg-black text-white py-2 px-4 rounded hover:bg-yellow-600 transition-colors text-center">
+                                        <Link to={`/app/product/${product._id}`} className="mt-2 w-full bg-yellow-900 text-white py-2 px-4 rounded hover:bg-yellow-600 transition-colors text-center">
                                             View
                                         </Link>
                                         <button onClick={() => handleAddToCart(product)} className="mt-4 w-full bg-black text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors">

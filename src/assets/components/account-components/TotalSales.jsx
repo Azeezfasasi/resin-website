@@ -47,7 +47,7 @@ function TotalSales() {
 
 return (
     <>
-    <div className='w-[100%] md:w-[95%] flex flex-col items-center justify-start gap-8 border rounded-[20px] h-fit md:h-[348px] relative bg-[#ffffff] overflow-hidden mt-[20px] p-[20px] md:ml-[10px] '>
+    <div className='w-[100%] md:w-[95%] flex flex-col items-center justify-start gap-8 border rounded-[20px] h-fit md:h-[348px] relative bg-[#ffffff] overflow-hidden mt-[20px] p-[20px] md:ml-[10px] mb-[100px] lg:mb-0'>
         {/* Top section */}
         <div className='flex flex-row items-center justify-between w-full h-[fit-content]'>
             <div className='flex flex-col'>

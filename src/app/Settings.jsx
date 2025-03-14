@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Helmet } from 'react-helmet'
 import MyAccountMenu from '../assets/components/account-components/MyAccountMenu'
 import AccountHeader from '../assets/components/account-components/AccountHeader'
+import MobileFooter from '../assets/components/home-components/MobileFooter';
 
 function Settings() {
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
@@ -51,7 +52,7 @@ function Settings() {
                         onChange={handleNotificationsToggle}
                         className="sr-only peer"
                       />
-                      <div className="w-11 h-6 bg-gray-200 rounded-full peer-focus:ring-2 peer-focus:ring-blue-300 peer-focus:ring-opacity-60 peer-checked:bg-blue-600 after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full cursor-pointer"></div>
+                      <div className="w-11 h-6 bg-gray-200 rounded-full peer-focus:ring-2 peer-focus:ring-blue-300 peer-focus:ring-opacity-60 peer-checked:bg-yellow-900 after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full cursor-pointer"></div>
                     </label>
                   </div>
 
@@ -72,7 +73,7 @@ function Settings() {
                         onChange={handleDarkModeToggle}
                         className="sr-only peer"
                     />
-                    <div className="w-11 h-6 bg-gray-200 rounded-full peer-focus:ring-2 peer-focus:ring-blue-300 peer-focus:ring-opacity-60 peer-checked:bg-blue-600 after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full cursor-pointer"></div>
+                    <div className="w-11 h-6 bg-gray-200 rounded-full peer-focus:ring-2 peer-focus:ring-blue-300 peer-focus:ring-opacity-60 peer-checked:bg-yellow-900 after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full cursor-pointer"></div>
                     </label>
                   </div>
 
@@ -101,6 +102,7 @@ function Settings() {
         </div>
       </div>
     </div>
+    <MobileFooter />
     </>
   )
 }

@@ -73,26 +73,25 @@ function Footer() {
         </div>
       </div>
     </div>
-    <div className="border-solid border-nanuelectricscom-black border-t-2 pt-2 flex flex-col items-center md:items-start justify-start">
-  <div className="p-4 md:p-4 flex flex-col md:flex-row items-center md:items-start justify-between w-full gap-4">
-    {/* Left Section */}
-    <div className="flex flex-col items-center flex-1 text-center md:text-center">
-      <div className="text-nanuelectricscom-black font-light text-sm md:text-base leading-relaxed">
-        Resin By Saidat | © 2024
-        <br />
-        <Link to="" className="hover:underline">
-          Terms &amp; Conditions
-        </Link>{' '}
-        |{' '}
-        <Link to="" className="hover:underline">
-          Privacy Policy
-        </Link>
+    <div className="border-solid border-nanuelectricscom-black border-t-2 pt-2 flex flex-col items-center md:items-start justify-start mb-[80px] lg:mb-0">
+      <div className="p-4 md:p-4 flex flex-col md:flex-row items-center md:items-start justify-between w-full gap-4">
+        {/* Left Section */}
+        <div className="flex flex-col items-center flex-1 text-center md:text-center">
+          <div className="text-nanuelectricscom-black font-light text-sm md:text-base leading-relaxed">
+            Resin By Saidat | © 2024
+            <br />
+            <Link to="" className="hover:underline">
+              Terms &amp; Conditions
+            </Link>{' '}
+            |{' '}
+            <Link to="" className="hover:underline">
+              Privacy Policy
+            </Link>
+          </div>
+        </div>
+      {/* Right Section */}
       </div>
     </div>
-
-    {/* Right Section */}
-  </div>
-</div>
 </>
   );
 }

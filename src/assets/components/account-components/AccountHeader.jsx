@@ -90,6 +90,11 @@ function AccountHeader() {
                             Track Order
                             </li>
                         </Link>
+                        <Link to="/app/order">
+                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                            Manage Orders
+                            </li>
+                        </Link>
                         <Link to="/app/settings">
                             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                             Settings

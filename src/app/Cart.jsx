@@ -44,7 +44,7 @@ const Cart = () => {
     <>
       <TopHeader />
       <MainHeader />
-      <section className="cart-section py-16">
+      <section className="cart-section py-16 mb-[80px] lg:mb-0">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">Your Cart</h2>
           {cart.length === 0 ? (

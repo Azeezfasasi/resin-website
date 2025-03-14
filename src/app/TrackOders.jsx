@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import MyAccountMenu from '../assets/components/account-components/MyAccountMenu';
 import AccountHeader from '../assets/components/account-components/AccountHeader';
+import MobileFooter from '../assets/components/home-components/MobileFooter';
 
 function TrackOders() {
     const [orderId, setOrderId] = useState('');
@@ -39,7 +40,7 @@ return (
     <Helmet>
         <title>Track Order - Resin By Saidat</title>
     </Helmet>
-    <div className='w-full flex flex-row justify-start border'>
+    <div className='w-full flex flex-row justify-start border mb-[80px] lg:mb-0'>
         {/* Menu section */}
         <div className='w-[0%] md:w-[20%]'>
             <MyAccountMenu />
@@ -82,6 +83,7 @@ return (
             </div>
         </div>
     </div>
+    <MobileFooter />
     </>
     );
 }

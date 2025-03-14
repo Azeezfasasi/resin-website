@@ -146,8 +146,11 @@ function Product() {
                             </button>
                         </div>
                     )}
+                    <br />
+                    <br />
                 </div>
             </div>
+            {/* <MobileFooter /> */}
             <WhatsAppChatRibbon />
         </>
     );

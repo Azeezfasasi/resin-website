@@ -64,7 +64,7 @@ function Register() {
       </Helmet>
       <TopHeader />
       <MainHeader />
-      <div className="w-full bg-[rgba(230,243,255,0.75)] flex flex-row h-auto min-h-screen relative overflow-hidden p-4 md:h-[1024px]">
+      <div className="w-full bg-[rgba(230,243,255,0.75)] flex flex-row h-auto min-h-screen relative overflow-hidden p-4 md:h-[1024px] mb-[80px] lg:mb-0">
         <div className='w-[40%] hidden md:block'>
           <img className="h-auto" src={loginimage} alt="Login" />
         </div>
@@ -141,12 +141,12 @@ function Register() {
             <p className="text-[16px] text-left text-[#7c838a]">
               Already have an account?
             </p>
-            <Link to="/app/login" className="ml-1 text-[#f9ed32]">Login</Link>
+            <Link to="/login" className="ml-1 text-[#f9ed32]">Login</Link>
           </div>
 
-          <p className="w-full md:w-[220px] text-center text-[#b0bac3] font-medium text-sm mt-6">- OR -</p>
+          {/* <p className="w-full md:w-[220px] text-center text-[#b0bac3] font-medium text-sm mt-6">- OR -</p> */}
 
-          <div className="flex flex-col md:flex-row gap-4 mt-6">
+          {/* <div className="flex flex-col md:flex-row gap-4 mt-6">
             <div className="flex items-center gap-2 border border-[#7c838a] rounded-[15px] p-3 w-full md:w-[220px]">
               <img className="w-6 h-6" src={google} alt="Google" />
               <p className="text-[#7c838a] text-sm">Sign in with Google</p>
@@ -155,7 +155,7 @@ function Register() {
               <img className="w-6 h-6" src={facebook} alt="Facebook" />
               <p className="text-[#7c838a] text-sm">Sign in with Facebook</p>
             </div>
-          </div>
+          </div> */}
         </form>
       </div>
       <MobileFooter />

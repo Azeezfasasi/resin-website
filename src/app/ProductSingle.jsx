@@ -75,43 +75,43 @@ const ProductSingle = () => {
         );
     }
 
-    return (
-        <>
-            <Helmet>
-                <title>{product.name} - Resin By Saidat</title>
-            </Helmet>
-            <TopHeader />
-            <MainHeader />
-            <div className="product-single-section py-16">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-col md:flex-row gap-6">
-                        <div className="w-full md:w-1/2">
-                            <img src={product.image} alt={product.name} className="w-full h-96 object-cover rounded-md shadow-md" />
-                        </div>
-                        <div className="w-full md:w-1/2">
-                            <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-                            <p className="text-gray-700 mb-4">{product.shortDescription}</p>
-                            <p className="text-xl font-semibold mb-4">Price: ₦{product.price}</p>
-                            <div className="mb-6">
-                                <h2 className="text-lg font-bold">Category:</h2>
-                                <p>{product.category || "No category available"}</p>
-                            </div>
-                            <button className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors mb-3" onClick={() => handleAddToCart(product)}>Add to Cart</button>
-                            <br />
-                            <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors" onClick={() => handleOrderViaWhatsApp(product)}>Order Via WhatsApp</button>
-                        </div>
+return (
+    <>
+    <Helmet>
+        <title>{product.name} - Resin By Saidat</title>
+    </Helmet>
+    <TopHeader />
+    <MainHeader />
+    <div className="product-single-section py-16 mb-[80px] lg:mb-0">
+        <div className="container mx-auto px-4">
+            <div className="flex flex-col md:flex-row gap-6">
+                <div className="w-full md:w-1/2">
+                    <img src={product.image} alt={product.name} className="w-full h-96 object-cover rounded-md shadow-md" />
+                </div>
+                <div className="w-full md:w-1/2">
+                    <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+                    <p className="text-gray-700 mb-4">{product.shortDescription}</p>
+                    <p className="text-xl font-semibold mb-4">Price: ₦{product.price}</p>
+                    <div className="mb-6">
+                        <h2 className="text-lg font-bold">Category:</h2>
+                        <p>{product.category || "No category available"}</p>
                     </div>
-                    <div className="border border-solid border-gray-200 w-full md:w-[50%] mt-6 flex flex-row items-start justify-start pl-2 mb-[70px] lg:mb-0">
-                        <div className="flex flex-col">
-                            <div className="text-[28px] font-bold mb-2">Product Description</div>
-                            <p>{product.longDescription || "No detailed description available"}</p>
-                        </div>
-                    </div>
+                    <button className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors mb-3" onClick={() => handleAddToCart(product)}>Add to Cart</button>
+                    <br />
+                    <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors" onClick={() => handleOrderViaWhatsApp(product)}>Order Via WhatsApp</button>
                 </div>
             </div>
-            <MobileFooter />
-            <WhatsAppChatRibbon />
-        </>
+            <div className="border border-solid border-gray-200 w-full md:w-[50%] mt-6 flex flex-row items-start justify-start pl-2 mb-[70px] lg:mb-0">
+                <div className="flex flex-col">
+                    <div className="text-[28px] font-bold mb-2">Product Description</div>
+                    <p>{product.longDescription || "No detailed description available"}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <MobileFooter />
+    <WhatsAppChatRibbon />
+    </>
     );
 };
 

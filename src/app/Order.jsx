@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import MyAccountMenu from '../assets/components/account-components/MyAccountMenu';
 import AccountHeader from '../assets/components/account-components/AccountHeader';
+import MobileFooter from '../assets/components/home-components/MobileFooter';
 
 const Order = () => {
     const [orders, setOrders] = useState([]);
@@ -69,7 +70,7 @@ const Order = () => {
         <Helmet>
             <title>Orders - Resin By Saidat</title>
         </Helmet>
-        <div className='w-full flex flex-row justify-start border'>
+        <div className='w-full flex flex-row justify-start border mb-[100px] lg:mb-0'>
             <div className='w-[0%] md:w-[20%]'>
                 <MyAccountMenu />
             </div>
@@ -134,6 +135,7 @@ const Order = () => {
                 </div></div>
             </div>
         </div>
+        <MobileFooter />
         </>
     );
 };
