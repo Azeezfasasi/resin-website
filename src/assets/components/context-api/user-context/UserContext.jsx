@@ -148,17 +148,15 @@ const editUser = async (userId, updatedData) => {
   // Reset User Password
   const resetUserPassword = async (userId, newPassword) => {
     try {
-      const token = localStorage.getItem('token');
-      const { data } = await axios.patch(
-        `${api}/${userId}/reset-password`,
-        { newPassword },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      return data;
+        const token = localStorage.getItem('token');
+        await axios.patch(`<span class="math-inline">\{api\}/users/</span>{userId}/reset-password`, { newPassword }, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
     } catch (error) {
-      console.error('Failed to reset password', error);
+        console.error('Failed to reset user password', error);
+        throw error;
     }
-  };
+};
 
   // Delete User (Admin Feature)
   // const deleteUser = async (userId) => {
@@ -213,16 +211,15 @@ const forgotPassword = async (email) => {
 };
 
 // Reset Password with Token
-const resetPassword = async (token, newPassword) => {
-  try {
-    const { data } = await axios.post(`${api}/reset-password`, { token, newPassword });
-    return data; // Backend should confirm the password has been reset
-  } catch (error) {
-    console.error('Failed to reset password', error);
-    throw error;
-  }
-};
-
+// const resetPassword = async (token, newPassword) => {
+//   try {
+//     const { data } = await axios.post(`${api}/reset-password`, { token, newPassword });
+//     return data; // Backend should confirm the password has been reset
+//   } catch (error) {
+//     console.error('Failed to reset password', error);
+//     throw error;
+//   }
+// };
 
   return (
     <UserContext.Provider

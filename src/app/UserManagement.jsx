@@ -25,14 +25,25 @@ function UserManagement() {
     loadUsers();
   }, [fetchUsers]);
 
-  const handleResetPassword = async (userId, newPassword) => {
-    try {
-      await resetUserPassword(userId, newPassword);
-      alert('Password reset successfully.');
-    } catch (err) {
-      alert('Failed to reset password.');
+//   const handleResetPassword = async (userId, newPassword) => {
+//     try {
+//       await resetUserPassword(userId, newPassword);
+//       alert('Password reset successfully.');
+//     } catch (err) {
+//       alert('Failed to reset password.');
+//     }
+//   };
+const handleResetPassword = async (userId) => {
+    const newPassword = prompt("Enter the new password:");
+    if (newPassword) {
+        try {
+            await resetUserPassword(userId, newPassword);
+            alert("Password reset successfully.");
+        } catch (err) {
+            alert("Failed to reset password.");
+        }
     }
-  };
+};
 
   const handleToggleUserStatus = async (user) => {
     try {
@@ -96,7 +107,10 @@ function UserManagement() {
                             <td className='border'>{user.role}</td>
                             <td className='border'>{user.disabled ? 'Disabled' : 'Enabled'}</td>
                             <td className='border'>
-                            <button onClick={() => handleResetPassword(user._id, 'defaultPassword')}>
+                            {/* <button onClick={() => handleResetPassword(user._id, 'defaultPassword')}>
+                                Reset Password
+                            </button> */}
+                            <button onClick={() => handleResetPassword(user._id)}>
                                 Reset Password
                             </button>
                             <button onClick={() => handleToggleUserStatus(user)}>
