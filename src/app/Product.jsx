@@ -151,7 +151,6 @@ function Product() {
                 </div>
             </div>
             <MobileFooter />
-            <WhatsAppChatRibbon />
         </>
     );
 }

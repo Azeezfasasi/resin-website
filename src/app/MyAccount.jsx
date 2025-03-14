@@ -26,7 +26,6 @@ function MyAccount() {
       </div>
     </div>
     <MobileFooter />
-    <WhatsAppChatRibbon />
     </>
   )
 }
