@@ -16,7 +16,7 @@ const AddProduct = () => {
     image: null,
   });
   const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     if (e.target.name === 'image') {
@@ -28,24 +28,35 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('name', productData.name);
-    formData.append('category', productData.category);
-    formData.append('shortDescription', productData.shortDescription);
-    formData.append('longDescription', productData.longDescription);
-    formData.append('price', productData.price);
-    formData.append('image', productData.image);
+    setLoading(true);
+    setError(null);
 
-    await addProduct(formData);
-    setProductData({
-      name: '',
-      category: '',
-      shortDescription: '',
-      longDescription: '',
-      price: '',
-      image: null,
-    });
-    alert('Product added successfully');
+    try {
+      const formData = new FormData();
+      formData.append('name', productData.name);
+      formData.append('category', productData.category);
+      formData.append('shortDescription', productData.shortDescription);
+      formData.append('longDescription', productData.longDescription);
+      formData.append('price', productData.price);
+      formData.append('image', productData.image);
+
+      await addProduct(formData);
+      
+      setProductData({
+        name: '',
+        category: '',
+        shortDescription: '',
+        longDescription: '',
+        price: '',
+        image: null,
+      });
+
+      alert('Product added successfully');
+    } catch (error) {
+      setError('Failed to add product. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -158,10 +169,15 @@ const AddProduct = () => {
                 <div className="flex items-center justify-center">
                     <button
                         type="submit"
-                        className="bg-yellow-900 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-yellow-900 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center"
                         disabled={loading}
                     >
-                        {loading ? "Adding Product..." : "Add Product"}
+                        {loading ? (
+                          <>
+                            <svg className="animate-spin h-5 w-5 mr-3 border-t-2 border-white rounded-full" viewBox="0 0 24 24"></svg>
+                            Adding Product...
+                          </>
+                        ) : "Add Product"}
                     </button>
                 </div>
             </form>
