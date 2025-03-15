@@ -21,30 +21,10 @@ function Footer() {
 
         {/* Links Section */}
         <div className="flex flex-col gap-4 items-center md:items-start">
-          <a
-            href="#faq"
-            className="text-nanuelectricscom-black text-base md:text-lg font-light"
-          >
-            Home
-          </a>
-          <a
-            href="#return-policy"
-            className="text-nanuelectricscom-black text-base md:text-lg font-light"
-          >
-            Shop
-          </a>
-          <a
-            href="#wholesale"
-            className="text-nanuelectricscom-black text-base md:text-lg font-light"
-          >
-            Return Policy
-          </a>
-          <a
-            href="#contact-us"
-            className="text-nanuelectricscom-black text-base md:text-lg font-light"
-          >
-            Contact Us
-          </a>
+          <Link to="/" className="text-nanuelectricscom-black text-base md:text-lg font-light">Home</Link>
+          <Link to="/app/shop" className="text-nanuelectricscom-black text-base md:text-lg font-light">Shop</Link>
+          <Link to="/" className="text-nanuelectricscom-black text-base md:text-lg font-light">Return Policy</Link>
+          <Link to="/" className="text-nanuelectricscom-black text-base md:text-lg font-light">Contact Us</Link>
         </div>
 
         {/* Social Media Section */}
@@ -78,7 +58,7 @@ function Footer() {
         {/* Left Section */}
         <div className="flex flex-col items-center flex-1 text-center md:text-center">
           <div className="text-nanuelectricscom-black font-light text-sm md:text-base leading-relaxed">
-            Resin By Saidat | © 2024
+            Resin By Saidat | © {new Date().getFullYear()}
             <br />
             <Link to="" className="hover:underline">
               Terms &amp; Conditions
