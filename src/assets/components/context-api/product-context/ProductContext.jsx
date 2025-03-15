@@ -50,27 +50,21 @@ const ProductProvider = ({ children }) => {
         }
     };
 
-    const updateProduct = async (updatedProduct) => {
+    const updateProduct = async (formData) => {
         try {
-            const id = updatedProduct.get("_id");
-            const response = await axios.put(`https://resin-backend.onrender.com/api/product/${id}`, updatedProduct, { // Corrected URL
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
+            const response = await axios.put(`${api}/${formData.get("_id")}`, formData, {
+                headers: { "Content-Type": "multipart/form-data" },
             });
-            setProducts((prevProducts) =>
-                prevProducts.map((product) =>
-                    product._id === response.data._id ? response.data : product
-                )
+            setProducts((prev) =>
+                prev.map((p) => (p._id === formData.get("_id") ? response.data : p))
             );
+            return response.data;
         } catch (err) {
             console.error("Error updating product:", err);
-            setError(err);
+            setError("Failed to update product. Please try again.");
         }
     };
-      
-      
-
+    
     return (
         <ProductContext.Provider value={{ products, addProduct, deleteProduct, updateProduct, loading, error }}>
             {children}
