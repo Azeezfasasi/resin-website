@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import MyAccountMenu from '../assets/components/account-components/MyAccountMenu';
 import AccountHeader from '../assets/components/account-components/AccountHeader';
 import MobileFooter from '../assets/components/home-components/MobileFooter';
+import OrderStatusChart from '../assets/components/account-components/OrderChart';
 
 const Order = () => {
     const [orders, setOrders] = useState([]);

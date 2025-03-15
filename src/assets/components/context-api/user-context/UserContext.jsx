@@ -98,13 +98,6 @@ const editUser = async (userId, updatedData) => {
   // Change User Role (Admin Feature)
   const changeUserRole = async (userId, newRole) => {
     try {
-        // const token = localStorage.getItem('token');
-        // await axios.patch(
-        //     // `${api}/${userId}`,
-        //     `<span class="math-inline">\{api\}/</span>{userId}/role`,
-        //     { role: newRole },
-        //     { headers: { Authorization: `Bearer ${token}` } }
-        // );
         const token = localStorage.getItem('token');
         const apiUrl = `https://resin-backend.onrender.com/api/users/${userId}/role`;
         await axios.patch(apiUrl, { role: newRole }, {

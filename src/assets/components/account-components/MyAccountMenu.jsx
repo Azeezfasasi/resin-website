@@ -4,6 +4,7 @@ import { Link, useNavigate, NavLink } from "react-router-dom";
 import heroarrow from '../../images/heroarrow.svg';
 import resin from '../../images/resin.png';
 import { UserContext } from "../context-api/user-context/UserContext";
+import OrderStatusChart from "./OrderChart";
 
 function MyAccountMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
@@ -138,7 +139,7 @@ function MyAccountMenu() {
               }`
             }
           >
-            <i className="fa-solid fa-shop"></i>
+            <i className="fa-solid fa-users"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Manage Users</span>}
           </NavLink>
 
@@ -153,18 +154,6 @@ function MyAccountMenu() {
             <i className="fa-solid fa-user"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Account Details</span>}
           </NavLink>
-
-          {/* <NavLink
-            to="/app/settings"
-            className={({ isActive }) =>
-              `flex items-center p-4 dark:hover:bg-gray-700 ${
-                isActive ? "bg-gray-200 dark:bg-gray-700" : ""
-              }`
-            }
-          >
-            <i className="fa-solid fa-gear"></i>
-            {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Settings</span>}
-          </NavLink> */}
 
           <NavLink onClick={handleLogout}
             to="/"
@@ -219,18 +208,6 @@ function MyAccountMenu() {
             <i className="fa-solid fa-user"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Account Details</span>}
           </NavLink>
-
-          {/* <NavLink
-            to="/app/settings"
-            className={({ isActive }) =>
-              `flex items-center p-4 dark:hover:bg-gray-700 ${
-                isActive ? "bg-gray-200 dark:bg-gray-700" : ""
-              }`
-            }
-          >
-            <i className="fa-solid fa-gear"></i>
-            {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Settings</span>}
-          </NavLink> */}
 
           <NavLink onClick={handleLogout}
             to="/"

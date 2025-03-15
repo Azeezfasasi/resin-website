@@ -5,6 +5,7 @@ import soldicon from '../../images/soldicon.svg';
 import customericon from '../../images/customericon.svg';
 import { Link } from 'react-router-dom';
 import { ProductContext } from "../context-api/product-context/ProductContext";
+import OrderStatusChart from './OrderChart';
 
 
 function TotalSales() {
@@ -13,6 +14,7 @@ function TotalSales() {
     const [totalCustomers, setTotalCustomers] = useState(0);
     const [customerCount, setCustomerCount] = useState(0);
     const [adminCount, setAdminCount] = useState(0);
+    const [orders, setOrders] = useState([]);
 
     const { products} = useContext(ProductContext);
     // Ensure products is always an array
@@ -45,14 +47,32 @@ function TotalSales() {
       fetchRoleCounts();
   }, []);
 
+//   Fetch Order Status
+  useEffect(() => {
+    const fetchOrders = async () => {
+        try {
+            const response = await fetch('https://resin-backend.onrender.com/api/orders');
+            if (!response.ok) {
+                throw new Error('Failed to fetch orders');
+            }
+            const data = await response.json();
+            setOrders(data);
+        } catch (error) {
+            console.error('Error fetching orders:', error);
+            alert('Failed to fetch orders.');
+        }
+    };
+
+    fetchOrders();
+}, []);
+
 return (
     <>
-    <div className='w-[100%] md:w-[95%] flex flex-col items-center justify-start gap-8 border rounded-[20px] h-fit md:h-[348px] relative bg-[#ffffff] overflow-hidden mt-[20px] p-[20px] md:ml-[10px] mb-[100px] lg:mb-0'>
+    <div className='w-[100%] md:w-[95%] flex flex-col items-center justify-start gap-8 border rounded-[20px] h-[80vh] relative bg-[#ffffff] overflow-y-scroll overflow-x-hidden mt-[20px] p-[20px] md:ml-[10px] mb-[100px] lg:mb-0'>
         {/* Top section */}
         <div className='flex flex-row items-center justify-between w-full h-[fit-content]'>
             <div className='flex flex-col'>
                 <div className="text-primary-dark-shade text-left font-xl-semibold-font-family text-xl-semibold-font-size leading-xl-semibold-line-height font-xl-semibold-font-weight">Today’s Summary</div>
-                {/* <div className="text-greys-blue-grey-700 text-left font-base-regular-font-family text-base-regular-font-size leading-base-regular-line-height font-base-regular-font-weight">Sales Summery</div> */}
             </div>
             <Link to="" className="flex items-center justify-center text-[#0f3659] text-xs sm:text-sm border w-[100px] h-10 rounded-[7px]">
                 Export
@@ -61,7 +81,7 @@ return (
         </div>
 
         {/* Cards section */}
-        <div className='w-full flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-5 overflow-hidden'>
+        <div className='w-full flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-5'>
             
             {/* Total Order Card*/}
             <div className='bg-[#fff4de] rounded-2xl w-[80%] md:w-[25%] h-[184px] relative'>
@@ -99,6 +119,8 @@ return (
                 <div className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">No of Admins</div>
             </div>
         </div>
+        {/* Chart */}
+        <OrderStatusChart orders={orders} />
     </div>
     </>
     );

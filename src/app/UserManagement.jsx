@@ -95,6 +95,7 @@ function UserManagement() {
           <AccountHeader />
           <div className="w-[90%] flex flex-col items-center justify-start self-center mx-auto overflow-x-auto overflow-y-hidden">
             <h2 className="text-2xl font-semibold mb-4">User Management</h2>
+            <p className="mb-2 text-[20px] lg:text-[22px] font-semibold text-yellow-900">Total Users: <span>{users.length}</span></p>
             {currentUsers.length === 0 ? (
               <div className="p-4">No users found on this page.</div>
             ) : (

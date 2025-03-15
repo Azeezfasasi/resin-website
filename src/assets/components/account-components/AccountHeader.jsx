@@ -78,18 +78,25 @@ function AccountHeader() {
                             Track Order
                             </li>
                         </Link>
+
+                        {user?.role === "Admin" && (
                         <Link to="/app/order" className='flex flex-row justify-start items-center gap-2 px-4 py-2'>
                             <i class="fa-solid fa-cart-arrow-down"></i>
                             <li className="hover:bg-gray-100 cursor-pointer">
                             Manage Orders
                             </li>
                         </Link>
+                        )}
+
+                        {user?.role === "Admin" && (
                         <Link to="/app/product" className='flex flex-row justify-start items-center gap-2 px-4 py-2'>
                             <i class="fa-solid fa-store"></i>
                             <li className="hover:bg-gray-100 cursor-pointer">
                             Manage Products
                             </li>
                         </Link>
+                        )}
+                        
                         <Link to="/app/settings" className='flex flex-row justify-start items-center gap-2 px-4 py-2'>
                             <i class="fa-solid fa-gear"></i>
                             <li className="hover:bg-gray-100 cursor-pointer">
