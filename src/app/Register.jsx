@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import MainHeader from '../assets/components/home-components/MainHeader';
@@ -46,7 +46,7 @@ function Register() {
       const response = await registerUser(formData);
       if (response.success) {
         setMessage("Registration successful! Redirecting to login...");
-        setTimeout(() => navigate("/app/myaccount"), 6000);
+        setTimeout(() => navigate("/app/myaccount"), 1000);
       } else {
         setError(response.message || "Registration failed. Please try again.");
       }
@@ -143,19 +143,6 @@ function Register() {
             </p>
             <Link to="/login" className="ml-1 text-[#f9ed32]">Login</Link>
           </div>
-
-          {/* <p className="w-full md:w-[220px] text-center text-[#b0bac3] font-medium text-sm mt-6">- OR -</p> */}
-
-          {/* <div className="flex flex-col md:flex-row gap-4 mt-6">
-            <div className="flex items-center gap-2 border border-[#7c838a] rounded-[15px] p-3 w-full md:w-[220px]">
-              <img className="w-6 h-6" src={google} alt="Google" />
-              <p className="text-[#7c838a] text-sm">Sign in with Google</p>
-            </div>
-            <div className="flex items-center gap-2 border border-[#7c838a] rounded-[15px] p-3 w-full md:w-[220px]">
-              <img className="w-6 h-6" src={facebook} alt="Facebook" />
-              <p className="text-[#7c838a] text-sm">Sign in with Facebook</p>
-            </div>
-          </div> */}
         </form>
       </div>
       <MobileFooter />
