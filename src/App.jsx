@@ -45,7 +45,6 @@ function App() {
           <Route path="/app/product/:id" element={<ProductSingle />} />
           <Route path="/app/trackmyorder" element={<TrackMyOders />} />
 
-
           {/*  Protected Routes */}
           <Route path="/app/myaccount" element={<ProtectedRoute><MyAccount /></ProtectedRoute>} />
           <Route path="/app/product" element={<ProtectedRoute><Product /></ProtectedRoute>} />

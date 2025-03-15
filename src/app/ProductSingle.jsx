@@ -7,6 +7,8 @@ import TopHeader from "../assets/components/home-components/TopHeader";
 import { Helmet } from "react-helmet";
 import WhatsAppChatRibbon from "../assets/components/home-components/WhatsappChatRibbon";
 import MobileFooter from "../assets/components/home-components/MobileFooter";
+import RecentlyViewedProducts from "../assets/components/home-components/RecentlyViewedProducts";
+import Footer from "../assets/components/home-components/Footer";
 
 const ProductSingle = () => {
     const { id } = useParams();
@@ -30,6 +32,19 @@ const ProductSingle = () => {
         addToCart(product);
         alert("Product added to cart!");
     };
+
+    // Recently viewed product
+    useEffect(() => {
+        if (product) {
+            let recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed')) || [];
+            const isAlreadyViewed = recentlyViewed.some(viewedProduct => viewedProduct._id === product._id);
+
+            if (!isAlreadyViewed) {
+                recentlyViewed = [product, ...recentlyViewed.slice(0, 6)];
+                localStorage.setItem('recentlyViewed', JSON.stringify(recentlyViewed));
+            }
+        }
+    }, [product, id]);
 
     const handleOrderViaWhatsApp = async (product) => {
       const orderDetails = {
@@ -82,7 +97,7 @@ return (
     </Helmet>
     <TopHeader />
     <MainHeader />
-    <div className="product-single-section py-16 mb-[80px] lg:mb-0">
+    <div className="product-single-section py-16 mb-[0px] lg:mb-0">
         <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row gap-6">
                 <div className="w-full md:w-1/2">
@@ -101,7 +116,7 @@ return (
                     <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors" onClick={() => handleOrderViaWhatsApp(product)}>Order Via WhatsApp</button>
                 </div>
             </div>
-            <div className="border border-solid border-gray-200 w-full md:w-[50%] mt-6 flex flex-row items-start justify-start pl-2 mb-[70px] lg:mb-0">
+            <div className="border border-solid border-gray-200 w-full md:w-[50%] mt-6 flex flex-row items-start justify-start pl-2 mb-[-30px] lg:mb-0">
                 <div className="flex flex-col">
                     <div className="text-[28px] font-bold mb-2">Product Description</div>
                     <p>{product.longDescription || "No detailed description available"}</p>
@@ -109,6 +124,8 @@ return (
             </div>
         </div>
     </div>
+    <RecentlyViewedProducts />
+    <Footer />
     <MobileFooter />
     <WhatsAppChatRibbon />
     </>

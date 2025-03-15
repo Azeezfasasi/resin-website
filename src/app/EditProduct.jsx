@@ -8,97 +8,125 @@ import MobileFooter from "../assets/components/home-components/MobileFooter";
 import WhatsAppChatRibbon from "../assets/components/home-components/WhatsappChatRibbon";
 
 function EditProduct() {
-  const { products, updateProduct } = useContext(ProductContext);
-  const { id } = useParams();
-  const navigate = useNavigate();
+   const { products, updateProduct, loading: productsLoading, error: productsError } = useContext(ProductContext);
+    const { id } = useParams();
+    const navigate = useNavigate();
 
-  const [productName, setProductName] = useState("");
-  const [shortDescription, setShortDescription] = useState("");
-  const [longDescription, setLongDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState(null);
-  const [category, setCategory] = useState("");
+    const [productName, setProductName] = useState("");
+    const [shortDescription, setShortDescription] = useState("");
+    const [longDescription, setLongDescription] = useState("");
+    const [price, setPrice] = useState("");
+    const [image, setImage] = useState(null);
+    const [category, setCategory] = useState("");
 
-  useEffect(() => {
-    if (!products || products.length === 0) {
-      console.error("Products not found or empty");
-      return;
-    }
+    useEffect(() => {
+        if (productsLoading) return;
+        if (productsError) {
+            console.error("error loading products", productsError);
+            alert("Error loading products");
+            return;
+        }
 
-    const product = products.find((p) => p._id === id);
-    if (product) {
-      setProductName(product.name);
-      setShortDescription(product.description || "");
-      setLongDescription(product.longDescription || "");
-      setPrice(product.price || "");
-      setImage(product.image || null);
-      setCategory(product.category || "");
-    } else {
-      alert("Product not found");
-      navigate("/app/product");
-    }
-  }, [id, products, navigate]);
+        if (!products || products.length === 0) {
+            console.error("Products not found or empty");
+            return;
+        }
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(file);
-    }
+        const product = products.find((p) => String(p._id) === id); // Use String() for comparison
+        if (product) {
+            setProductName(product.name);
+            setShortDescription(product.description || "");
+            setLongDescription(product.longDescription || "");
+            setPrice(product.price || "");
+            setImage(product.image || null);
+            setCategory(product.category || "");
+        } else {
+            alert("Product not found");
+            navigate("/app/product");
+        }
+    }, [id, products, navigate, productsLoading, productsError]);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setImage(file);
+        }
+    };
+
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+
+    //     if (!productName || !price) {
+    //         alert("All fields are required!");
+    //         return;
+    //     }
+
+    //     const formData = new FormData();
+    //     formData.append("_id", id);
+    //     formData.append("name", productName);
+    //     formData.append("description", shortDescription);
+    //     formData.append("longDescription", longDescription);
+    //     formData.append("price", parseFloat(price));
+    //     formData.append("category", category);
+
+    //     if (image instanceof File) {
+    //         formData.append("image", image);
+    //     }
+
+    //     try {
+    //         await updateProduct(formData);
+    //         alert("Product updated successfully!");
+    //         navigate("/app/product");
+    //     } catch (error) {
+    //         console.error("Error updating product:", error);
+    //         if (error.response) {
+    //             console.error("Server responded with:", error.response.data);
+    //             alert(`Failed to update product: ${error.response.data.message || "Server error"}`);
+    //         } else if (error.request) {
+    //             console.error("No response from server:", error.request);
+    //             alert("Failed to update product: No response from server");
+    //         } else {
+    //             console.error("Error setting up request:", error.message);
+    //             alert(`Failed to update product: ${error.message}`);
+    //         }
+    //     }
+    // };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+  
+      if (!productName || !price) {
+          alert("All fields are required!");
+          return;
+      }
+  
+      const formData = new FormData();
+      formData.append("_id", id);
+      formData.append("name", productName);
+      formData.append("description", shortDescription);
+      formData.append("longDescription", longDescription);
+      formData.append("price", parseFloat(price));
+      formData.append("category", category);
+  
+      if (image instanceof File) {
+          // New image uploaded, send the file
+          formData.append("image", image);
+      } else {
+          // No new image uploaded, explicitly tell the backend to keep the existing image
+          formData.append("keepImage", "true"); // Or a similar flag
+      }
+  
+      try {
+          await updateProduct(formData);
+          alert("Product updated successfully!");
+          navigate("/app/product");
+      } catch (error) {
+          // ... (error handling)
+      }
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   if (!productName || !shortDescription || !price) {
-  //     alert("All fields are required!");
-  //     return;
-  //   }
-
-  //   const updatedProduct = {
-  //     _id: id,
-  //     name: productName,
-  //     description: shortDescription,
-  //     longDescription,
-  //     price: parseFloat(price),
-  //     image: image instanceof File ? URL.createObjectURL(image) : image,
-  //     category,
-  //   };
-    
-
-  //   updateProduct(updatedProduct);
-  //   alert("Product updated successfully!");
-  //   navigate("/app/product");
-  // };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    if (!productName || !price) {
-      alert("All fields are required!");
-      return;
+    if (productsLoading) {
+        return <p>Loading...</p>;
     }
-  
-    const formData = new FormData();
-    formData.append("_id", id);
-    formData.append("name", productName);
-    formData.append("description", shortDescription);
-    formData.append("longDescription", longDescription);
-    formData.append("price", parseFloat(price));
-    formData.append("category", category);
-  
-    // Append image only if a new file was uploaded
-    if (image instanceof File) {
-      formData.append("image", image);
-    }
-  
-    try {
-      await updateProduct(formData);
-      alert("Product updated successfully!");
-      navigate("/app/product");
-    } catch (error) {
-      console.error("Error updating product:", error);
-      alert("Failed to update product.");
-    }
-  };
   
 
   return (
@@ -203,7 +231,7 @@ function EditProduct() {
               </div>
 
               {/* Product Image */}
-              {/* <div className="mb-4">
+              <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
                   Product Image
                 </label>
@@ -220,7 +248,7 @@ function EditProduct() {
                     className="mt-2 w-32 h-32 object-cover"
                   />
                 )}
-              </div> */}
+              </div>
 
               <div className="flex items-center justify-between">
                 <button

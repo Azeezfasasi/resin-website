@@ -79,7 +79,7 @@ const OrderStatusChart = ({ orders }) => {
         },
     };
 
-    return <Bar options={options} data={chartData} />;
+    return <div className='w-full h-full'><Bar options={options} data={chartData} /></div>
 };
 
 export default OrderStatusChart;

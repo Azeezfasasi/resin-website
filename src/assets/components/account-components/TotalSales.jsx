@@ -119,7 +119,6 @@ return (
                 <div className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">No of Admins</div>
             </div>
         </div>
-        {/* Chart */}
         <OrderStatusChart orders={orders} />
     </div>
     </>

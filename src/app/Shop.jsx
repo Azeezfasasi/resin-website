@@ -7,6 +7,8 @@ import TopHeader from "../assets/components/home-components/TopHeader";
 import { Helmet } from "react-helmet";
 import WhatsAppChatRibbon from "../assets/components/home-components/WhatsappChatRibbon";
 import MobileFooter from "../assets/components/home-components/MobileFooter";
+import RecentlyViewedProducts from "../assets/components/home-components/RecentlyViewedProducts";
+import Footer from "../assets/components/home-components/Footer";
 
 const Shop = () => {
     const { products } = useContext(ProductContext);
@@ -86,7 +88,7 @@ const Shop = () => {
             </Helmet>
             <TopHeader />
             <MainHeader />
-            <section className="shop-section py-16">
+            <section className="shop-section py-16 mt-[-40px]">
                 <div className="container mx-auto px-4">
                     <h2 className="text-3xl font-bold text-center mb-8">Our Products</h2>
 
@@ -104,16 +106,6 @@ const Shop = () => {
                                 </option>
                             ))}
                         </select>
-
-                        {/* <select
-                            value={newProductFilter}
-                            onChange={(e) => setNewProductFilter(e.target.value)}
-                            className="mx-2 p-2 border rounded"
-                        >
-                            <option value="All">All Products</option>
-                            <option value="New">New Products</option>
-                            <option value="Old">Old Products</option>
-                        </select> */}
 
                         <select
                             value={priceSort}
@@ -164,7 +156,7 @@ const Shop = () => {
                     </div>
 
                     {/* Pagination Controls */}
-                    <div className="flex justify-center items-center mt-4 lg:mt-8 mb-[80px] lg:mb-0">
+                    <div className="flex justify-center items-center mt-4 lg:mt-8 mb-[0px] lg:mb-0">
                         <button
                             onClick={prevPage}
                             disabled={currentPage === 1}
@@ -185,6 +177,8 @@ const Shop = () => {
                     </div>
                 </div>
             </section>
+            <RecentlyViewedProducts />
+            <Footer />
             <MobileFooter />
             <WhatsAppChatRibbon />
         </>
