@@ -15,8 +15,6 @@ export const UserProvider = ({ children }) => {
 
   const api = 'https://resin-backend.onrender.com/api/users'; // Update with your backend URL
 
-  
-
   // Load user data from local storage on initial render
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -98,32 +96,26 @@ const editUser = async (userId, updatedData) => {
 };
 
   // Change User Role (Admin Feature)
-  // const changeUserRole = async (userId, newRole) => {
-  //   try {
-  //     const token = localStorage.getItem('token');
-  //     const { data } = await axios.patch(
-  //       `${api}/${userId}/role`,
-  //       { role: newRole },
-  //       { headers: { Authorization: `Bearer ${token}` } }
-  //     );
-  //     return data;
-  //   } catch (error) {
-  //     console.error('Failed to change user role', error);
-  //   }
-  // };
   const changeUserRole = async (userId, newRole) => {
     try {
-      const token = localStorage.getItem('token');
-      await axios.patch(
-        `<span class="math-inline">\{api\}/</span>{userId}`, // Assuming your editUser route handles role changes
-        { role: newRole },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+        const token = localStorage.getItem('token');
+        await axios.patch(
+            // `${api}/${userId}`,
+            `<span class="math-inline">\{api\}/</span>{userId}/role`,
+            { role: newRole },
+            { headers: { Authorization: `Bearer ${token}` } }
+        );
     } catch (error) {
-      console.error('Failed to change user role', error);
-      throw error;
+        if (error.response) {
+            console.error('Failed to change user role', error.response.data);
+            alert(`Failed to change user role: ${error.response.data.message || 'An error occurred.'}`);
+        } else {
+            console.error('Failed to change user role', error.message);
+            alert('Failed to change user role. Please check your network connection.');
+        }
+        throw error;
     }
-  };
+};
 
   // Disable User (Admin Feature)
   const disableUser = async (userId) => {
@@ -221,7 +213,7 @@ const resetPassword = async (token, newPassword) => {
         deleteUser,
         addNewUser,
         forgotPassword,
-        resetUserPassword,
+        // resetUserPassword,
         resetPassword
       }}
     >
