@@ -5,7 +5,7 @@ import MyAccountMenu from '../assets/components/account-components/MyAccountMenu
 import AccountHeader from '../assets/components/account-components/AccountHeader';
 
 function UserManagement() {
-  const { users, fetchUsers, editUser, resetUserPassword, deleteUser } = useContext(UserContext);
+  const { users, fetchUsers, editUser, resetUserPassword, deleteUser, changeUserRole } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
