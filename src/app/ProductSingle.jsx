@@ -137,8 +137,8 @@ return (
                 <div className="w-full md:w-1/2">
                     <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
                     <p className="text-gray-700 mb-4">{product.shortDescription}</p>
-                    <p className="text-xl font-semibold mb-4">Price: ₦{product.price}</p>
-                    <div className="mb-6">
+                    <p className="text-xl font-semibold mb-4">₦{product.price}</p>
+                    <div className="mb-6 flex flex-row justify-start items-center gap-1">
                         <h2 className="text-lg font-bold">Category:</h2>
                         <p>{product.category || "No category available"}</p>
                     </div>

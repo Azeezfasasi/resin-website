@@ -60,6 +60,7 @@ const AddProduct = () => {
             price: '',
             images: [],
         });
+        alert('Product added successfully!');
 
         setImagePreviews([]); // Clear previews
     } catch (error) {

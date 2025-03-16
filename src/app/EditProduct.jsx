@@ -106,9 +106,9 @@ return (
         <div className="md:w-1/5">
             <MyAccountMenu />
         </div>
-        <div className="md:w-4/5 p-6">
+        <div className="md:w-[80%] h-[100vh] overflow-y-scroll overflow-x-hidden">
             <AccountHeader />
-            <h2 className="text-2xl font-semibold mb-6">Edit Product</h2>
+            <h2 className="text-2xl font-semibold mt-4 mb-2 ml-[20px] text-yellow-900">Edit Product</h2>
             {error && <div className="text-red-500 mb-4">{error}</div>}
             <form onSubmit={handleSubmit} className="max-w-lg space-y-4 bg-white p-6 rounded-lg shadow-md">
                 <div>
