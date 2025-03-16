@@ -102,15 +102,15 @@ return (
     <Helmet>
         <title>Edit Product - Resin By Saidat</title>
     </Helmet>
-    <div className="flex flex-col md:flex-row w-full">
-        <div className="md:w-1/5">
+    <div className='w-full flex flex-row justify-start'>
+        <div className="w-[0%] md:w-[20%]">
             <MyAccountMenu />
         </div>
-        <div className="md:w-[80%] h-[100vh] overflow-y-scroll overflow-x-hidden">
+        <div className="w-full md:w-[80%]">
             <AccountHeader />
             <h2 className="text-2xl font-semibold mt-4 mb-2 ml-[20px] text-yellow-900">Edit Product</h2>
             {error && <div className="text-red-500 mb-4">{error}</div>}
-            <form onSubmit={handleSubmit} className="max-w-lg space-y-4 bg-white p-6 rounded-lg shadow-md">
+            <form onSubmit={handleSubmit} className="max-w-screen-md space-y-4 bg-white p-6 rounded-lg shadow-md h-[130vh] lg:h-[75vh] overflow-y-scroll overflow-x-hidden">
                 <div>
                     <label className="block text-sm font-medium">Product Name</label>
                     <input type="text" name="name" value={productData.name} onChange={handleInputChange} required className="w-full border rounded-lg p-2" />
