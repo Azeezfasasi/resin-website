@@ -32,43 +32,6 @@ const AddProduct = () => {
     }
 };
 
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   setError(null);
-
-  //   try {
-  //     const formData = new FormData();
-  //     formData.append('name', productData.name);
-  //     formData.append('category', productData.category);
-  //     formData.append('shortDescription', productData.shortDescription);
-  //     formData.append('longDescription', productData.longDescription);
-  //     formData.append('price', productData.price);
-
-  //     // Append each image
-  //     productData.images.forEach(image => {
-  //       formData.append('images', image);
-  //   });
-
-  //     await addProduct(formData);
-      
-  //     setProductData({
-  //       name: '',
-  //       category: '',
-  //       shortDescription: '',
-  //       longDescription: '',
-  //       price: '',
-  //       images: [],
-  //     });
-
-  //     setImagePreviews([]); // Clear previews
-  //   } catch (error) {
-  //     setError('Failed to add product. Please try again.');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
