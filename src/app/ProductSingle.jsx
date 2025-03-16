@@ -16,6 +16,7 @@ const ProductSingle = () => {
     const [product, setProduct] = useState(null);
     const { addToCart } = useCart();
     const navigate = useNavigate();
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     useEffect(() => {
         if (products && products.length > 0) {
@@ -90,6 +91,14 @@ const ProductSingle = () => {
         );
     }
 
+    const nextImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % product.images.length);
+    };
+
+    const prevImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + product.images.length) % product.images.length);
+    };
+
 return (
     <>
     <Helmet>
@@ -100,8 +109,30 @@ return (
     <div className="product-single-section py-16 mb-[0px] lg:mb-0">
         <div className="container mx-auto px-4">
             <div className="flex flex-col md:flex-row gap-6">
-                <div className="w-full md:w-1/2">
-                    <img src={product.image} alt={product.name} className="w-full h-96 object-cover rounded-md shadow-md" />
+                <div className="w-full md:w-1/2 relative">
+                    {product.images && product.images.length > 0 && (
+                        <img
+                            src={product.images[currentImageIndex]}
+                            alt={product.name}
+                            className="w-full h-96 object-cover rounded-md shadow-md"
+                        />
+                    )}
+                    {product.images && product.images.length > 1 && (
+                    <>
+                        <button
+                            onClick={prevImage}
+                            className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+                        >
+                            &lt;
+                        </button>
+                        <button
+                            onClick={nextImage}
+                            className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+                        >
+                            &gt;
+                        </button>
+                    </>
+                    )}
                 </div>
                 <div className="w-full md:w-1/2">
                     <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
