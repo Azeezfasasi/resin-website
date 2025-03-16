@@ -25,6 +25,7 @@ import ForgotPasswordForm from "./ForgotPasswordForm";
 import ResetPasswordForm from "./ResetPasswordForm";
 import TrackMyOders from "./app/TrackMyOrder";
 import UserManagement from "./app/UserManagement";
+import CategoryProducts from "./app/CategoryProducts";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/resetpasswordform" element={<ResetPasswordForm />} />
           <Route path="/app/product/:id" element={<ProductSingle />} />
           <Route path="/app/trackmyorder" element={<TrackMyOders />} />
+          <Route path="/app/category/:category" element={<CategoryProducts />} />
 
           {/*  Protected Routes */}
           <Route path="/app/myaccount" element={<ProtectedRoute><MyAccount /></ProtectedRoute>} />

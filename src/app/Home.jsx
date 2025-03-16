@@ -14,6 +14,7 @@ import Footer from '../assets/components/home-components/Footer';
 import TopHeaderTwo from '../assets/components/home-components/TopHeaderTwo';
 import MobileFooter from '../assets/components/home-components/MobileFooter';
 import WhatsAppChatRibbon from '../assets/components/home-components/WhatsappChatRibbon';
+import ShopByCategories from '../assets/components/home-components/ShopByCategories';
 
 function Home() {
   return (
@@ -26,6 +27,7 @@ function Home() {
     <MainHeader />
     </div>
     <Hero />
+    <ShopByCategories />
     <ObjectWithSense />
     <TimeMade />
     <About />

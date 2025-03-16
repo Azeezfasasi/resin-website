@@ -35,7 +35,8 @@ const ProductProvider = ({ children }) => {
                 },
             });
             const updatedProducts = await axios.get(api);
-            setProducts(updatedProducts.data);
+            // setProducts(updatedProducts.data);
+            setProducts((prev) => [...prev, response.data]);
         } catch (err) {
             setError(err);
         }
