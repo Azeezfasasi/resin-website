@@ -5,7 +5,6 @@ import { ProductContext } from '../context-api/product-context/ProductContext'; 
 const ShopByCategories = () => {
     const { products, loading } = useContext(ProductContext);
 
-    // Ensure products is defined before accessing its properties
     const categories = products ? [...new Set(products.map((product) => product.category).filter(Boolean))] : [];
 
     return (

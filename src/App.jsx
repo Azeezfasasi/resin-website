@@ -26,6 +26,7 @@ import ResetPasswordForm from "./ResetPasswordForm";
 import TrackMyOders from "./app/TrackMyOrder";
 import UserManagement from "./app/UserManagement";
 import CategoryProducts from "./app/CategoryProducts";
+import Wishlist from "./app/Wishlist";
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path="/app/product/:id" element={<ProductSingle />} />
           <Route path="/app/trackmyorder" element={<TrackMyOders />} />
           <Route path="/app/category/:category" element={<CategoryProducts />} />
+          <Route path="/app/wishlist" element={<Wishlist />} />
 
           {/*  Protected Routes */}
           <Route path="/app/myaccount" element={<ProtectedRoute><MyAccount /></ProtectedRoute>} />
@@ -61,6 +63,7 @@ function App() {
           <Route path="/app/editproduct/:id" element={<ProtectedRoute><EditProduct /></ProtectedRoute>} />
           <Route path="/myaccount" element={<ProtectedRoute><MyAccount /></ProtectedRoute>} />
           <Route path="/app/usermanagement" element={<ProtectedRoute><UserManagement /></ProtectedRoute>} />
+          <Route path="/app/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
         </Routes>
       </Router>
     </>

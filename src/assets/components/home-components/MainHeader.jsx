@@ -34,7 +34,7 @@ function MainHeader() {
           <Link to="/app/trackmyorder" className="text-left uppercase">
             Track Orders
           </Link>
-          <Link to="" className="text-left uppercase">
+          <Link to="/app/wishlist" className="text-left uppercase">
             Wishlist
           </Link>
           <Link to="/app/myaccount" className="text-left uppercase border px-5 py-3">
