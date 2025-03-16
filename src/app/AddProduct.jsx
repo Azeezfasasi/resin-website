@@ -13,51 +13,98 @@ const AddProduct = () => {
     shortDescription: '',
     longDescription: '',
     price: '',
-    image: null,
+    images: [],
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [imagePreviews, setImagePreviews] = useState([]);
 
   const handleChange = (e) => {
-    if (e.target.name === 'image') {
-      setProductData({ ...productData, image: e.target.files[0] });
-    } else {
-      setProductData({ ...productData, [e.target.name]: e.target.value });
-    }
-  };
+    if (e.target.name === 'images') {
+        const files = Array.from(e.target.files); // Convert FileList to array
+        setProductData({ ...productData, images: files });
 
+        // Generate preview URLs
+        const previews = files.map(file => URL.createObjectURL(file));
+        setImagePreviews(previews);
+    } else {
+        setProductData({ ...productData, [e.target.name]: e.target.value });
+    }
+};
+
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   setError(null);
+
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append('name', productData.name);
+  //     formData.append('category', productData.category);
+  //     formData.append('shortDescription', productData.shortDescription);
+  //     formData.append('longDescription', productData.longDescription);
+  //     formData.append('price', productData.price);
+
+  //     // Append each image
+  //     productData.images.forEach(image => {
+  //       formData.append('images', image);
+  //   });
+
+  //     await addProduct(formData);
+      
+  //     setProductData({
+  //       name: '',
+  //       category: '',
+  //       shortDescription: '',
+  //       longDescription: '',
+  //       price: '',
+  //       images: [],
+  //     });
+
+  //     setImagePreviews([]); // Clear previews
+  //   } catch (error) {
+  //     setError('Failed to add product. Please try again.');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
     try {
-      const formData = new FormData();
-      formData.append('name', productData.name);
-      formData.append('category', productData.category);
-      formData.append('shortDescription', productData.shortDescription);
-      formData.append('longDescription', productData.longDescription);
-      formData.append('price', productData.price);
-      formData.append('image', productData.image);
+        const formData = new FormData();
+        formData.append('name', productData.name);
+        formData.append('category', productData.category);
+        formData.append('shortDescription', productData.shortDescription);
+        formData.append('longDescription', productData.longDescription);
+        formData.append('price', productData.price);
 
-      await addProduct(formData);
-      
-      setProductData({
-        name: '',
-        category: '',
-        shortDescription: '',
-        longDescription: '',
-        price: '',
-        image: null,
-      });
+        // Append each image individually
+        productData.images.forEach(image => {
+            formData.append('images', image); // Append each file separately
+        });
 
-      alert('Product added successfully');
+        await addProduct(formData);
+
+        setProductData({
+            name: '',
+            category: '',
+            shortDescription: '',
+            longDescription: '',
+            price: '',
+            images: [],
+        });
+
+        setImagePreviews([]); // Clear previews
     } catch (error) {
-      setError('Failed to add product. Please try again.');
+        setError('Failed to add product. Please try again.');
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   return (
   <>
@@ -155,16 +202,23 @@ const AddProduct = () => {
                     />
                 </div>
                 <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
-                        Image:
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="images">
+                        Images:
                     </label>
+                    <p>You can add up to 10 images</p>
                     <input
                         type="file"
-                        id="image"
-                        name="image"
+                        id="images"
+                        name="images"
                         onChange={handleChange}
+                        multiple // Allow multiple files
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     />
+                    <div className="flex mt-2">
+                        {imagePreviews.map((preview, index) => (
+                            <img key={index} src={preview} alt={`Preview ${index}`} className="w-20 h-20 object-cover mr-2" />
+                        ))}
+                    </div>
                 </div>
                 <div className="flex items-center justify-center">
                     <button
