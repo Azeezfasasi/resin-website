@@ -138,7 +138,7 @@ const ObjectWithSense = () => {
                                             <img
                                                 src={product.images[0]}
                                                 alt={product.name}
-                                                className="w-full h-48 object-contain rounded-md"
+                                                className="w-full h-[250px] object-fill rounded-md"
                                             />
                                         )}
                                     </Link>

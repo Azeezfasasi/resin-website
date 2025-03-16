@@ -118,25 +118,18 @@ const Shop = () => {
                                         <div className="w-full h-48 object-contain rounded-md flex overflow-hidden">
                                             {product.images && product.images.length > 0 && ( // Check if images exist
                                                 <img
-                                                    src={product.images[0]} // Display only the first image
+                                                    src={product.images[0]}
                                                     alt={`${product.name} - 0`}
-                                                    className="min-w-full h-full object-contain rounded-md mr-2"
+                                                    className="min-w-full h-full rounded-md mr-2 object-fill"
                                                 />
                                             )}
                                         </div>
-                                    </Link>
-                                    <div className="mt-4 flex flex-col items-start justify-center">
+                                        <div className="mt-4 flex flex-col items-start justify-center">
                                         <h3 className="text-lg font-semibold">{product.name}</h3>
                                         <p className="text-gray-600">₦{product.price}</p>
-                                        {/* <button onClick={() => handleAddToWishlist(product)}>Add to Wishlist</button> */}
                                     </div>
+                                    </Link>
                                     <div className="mt-6 flex flex-col items-center justify-center">
-                                        <Link
-                                            to={`/app/product/${product._id}`}
-                                            className="mt-2 w-full bg-black text-white py-2 px-4 rounded hover:bg-yellow-600 transition-colors text-center"
-                                        >
-                                            View
-                                        </Link>
                                         <button
                                             onClick={() => handleAddToCart(product)}
                                             className="mt-4 w-full bg-black text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors"
