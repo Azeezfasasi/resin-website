@@ -84,40 +84,40 @@ return (
         <div className='w-full flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-5'>
             
             {/* Total Order Card*/}
-            <div className='bg-[#fff4de] rounded-2xl w-[80%] md:w-[25%] h-[184px] relative'>
+            <Link to="/app/order" className='bg-[#fff4de] rounded-2xl w-[80%] md:w-[25%] h-[184px] relative'>
                 <div className="bg-[#ff947a] rounded-[50%] w-10 h-10 absolute left-5 top-5 flex flex-row items-center justify-center">
                     <img className="w-5 h-5 overflow-visible" src={ordericon} alt="Order Icon" />
                 </div>
                 <div className="text-greys-blue-grey-900 text-left font-2xl-semibold-font-family text-2xl-semibold-font-size leading-2xl-semibold-line-height font-2xl-semibold-font-weight absolute left-5 top-[76px]">{totalOrders}</div>
-                <Link to="/app/order" className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">Total Order</Link>
-            </div>
+                <div className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">Total Order</div>
+            </Link>
 
             {/* Number of Product Card */}
-            <div className='bg-[#dcfce7] rounded-2xl w-[80%] md:w-[25%] h-[184px] relative'>
+            <Link to="/app/product" className='bg-[#dcfce7] rounded-2xl w-[80%] md:w-[25%] h-[184px] relative'>
                 <div className="bg-[#3cd856] rounded-[50%] w-10 h-10 absolute left-5 top-5 flex flex-row items-center justify-center">
                     <img className="w-5 h-5 overflow-visible" src={soldicon} alt="Sold Icon" />
                 </div>
                 <div className="text-greys-blue-grey-900 text-left font-2xl-semibold-font-family text-2xl-semibold-font-size leading-2xl-semibold-line-height font-2xl-semibold-font-weight absolute left-5 top-[76px]">{productList.length}</div>
-                <Link to="/app/product" className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">No of Product</Link>
-            </div>
+                <div className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">No of Product</div>
+            </Link>
 
             {/* Number of Customers Card */}
-            <div className='bg-[#f3e8ff] rounded-2xl w-[80%] md:w-[25%] h-[184px] relative'>
+            <Link to="/app/usermanagement" className='bg-[#f3e8ff] rounded-2xl w-[80%] md:w-[25%] h-[184px] relative'>
                 <div className="bg-[#151d48] rounded-[50%] w-10 h-10 absolute left-5 top-5 flex flex-row items-center justify-center">
                     <img className="w-5 h-5 overflow-visible" src={customericon} alt="Customer Icon" />
                 </div>
                 <div className="text-greys-blue-grey-900 text-left font-2xl-semibold-font-family text-2xl-semibold-font-size leading-2xl-semibold-line-height font-2xl-semibold-font-weight absolute left-5 top-[76px]">{customerCount}</div>
-                <Link to="/app/usermanagement" className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">No of Customers</Link>
-            </div>
+                <div className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">No of Customers</div>
+            </Link>
 
             {/* Number of Customers Card */}
-            <div className='bg-[#ffe2e5] rounded-2xl w-[80%] md:w-[25%] h-[184px] relative'>
+            <Link to="/app/usermanagement" className='bg-[#ffe2e5] rounded-2xl w-[80%] md:w-[25%] h-[184px] relative'>
                 <div className="bg-[#151d48] rounded-[50%] w-10 h-10 absolute left-5 top-5 flex flex-row items-center justify-center">
                     <img className="w-5 h-5 overflow-visible" src={customericon} alt="Customer Icon" />
                 </div>
                 <Link to="/app/usermanagement" className="text-greys-blue-grey-900 text-left font-2xl-semibold-font-family text-2xl-semibold-font-size leading-2xl-semibold-line-height font-2xl-semibold-font-weight absolute left-5 top-[76px]">{adminCount}</Link>
                 <div className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">No of Admins</div>
-            </div>
+            </Link>
         </div>
         <OrderStatusChart orders={orders} />
     </div>
