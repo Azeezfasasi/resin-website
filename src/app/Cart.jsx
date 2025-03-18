@@ -33,10 +33,10 @@ return (
               <div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {cart.map((product) => (
-                    <div key={product.id} className="bg-white rounded-lg shadow-md p-4">
+                    <div key={product._id} className="bg-white rounded-lg shadow-md p-4">
                       <Link to={`/app/product/${product._id}`}>
                         <img
-                          src={product.image}
+                          src={product.images}
                           alt={product.name}
                           className="w-full h-48 object-contain rounded-md"
                         />
@@ -46,7 +46,7 @@ return (
                         </div>
                         </Link>
                         <button
-                            onClick={() => handleRemove(product.id)}
+                            onClick={() => handleRemove(product._id)}
                             className="mt-4 w-full bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition-colors"
                         >
                             Remove

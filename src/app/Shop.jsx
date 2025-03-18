@@ -120,11 +120,11 @@ const Shop = () => {
                                                 <img
                                                     src={product.images[0]}
                                                     alt={`${product.name} - 0`}
-                                                    className="min-w-full h-full rounded-md mr-2 object-fill"
+                                                    className="w-[80%] h-full rounded-md object-fill mx-auto"
                                                 />
                                             )}
                                         </div>
-                                        <div className="mt-4 flex flex-col items-start justify-center">
+                                        <div className="mt-4 flex flex-col items-center justify-center">
                                         <h3 className="text-lg font-semibold">{product.name}</h3>
                                         <p className="text-gray-600">₦{product.price}</p>
                                     </div>

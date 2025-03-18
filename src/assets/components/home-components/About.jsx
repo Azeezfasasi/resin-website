@@ -3,10 +3,10 @@ import saidat from '../../images/saidat.png';
 
 function About() {
   return (
-    <div className="border-solid border-nanuelectricscom-black border-t-2 pt-0.5 flex flex-col md:flex-row gap-0 items-start justify-start relative overflow-hidden">
+    <div className="border-solid border-nanuelectricscom-black border-t-2 pt-0.5 flex flex-col md:flex-row gap-0 items-center justify-start relative overflow-hidden">
       {/* Left Section */}
       <div className="bg-nanuelectricscom-nero flex flex-col items-center justify-start w-full md:w-1/2">
-        <div className="min-h-[300px] md:min-h-[600px] w-full relative overflow-hidden">
+        <div className="min-h-[300px] md:min-h-[400px] w-full relative overflow-hidden">
           <img
             className="w-full h-full object-cover"
             src={saidat}
