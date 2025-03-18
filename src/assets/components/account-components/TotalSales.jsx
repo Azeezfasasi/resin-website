@@ -89,7 +89,7 @@ return (
                     <img className="w-5 h-5 overflow-visible" src={ordericon} alt="Order Icon" />
                 </div>
                 <div className="text-greys-blue-grey-900 text-left font-2xl-semibold-font-family text-2xl-semibold-font-size leading-2xl-semibold-line-height font-2xl-semibold-font-weight absolute left-5 top-[76px]">{totalOrders}</div>
-                <div className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">Total Order</div>
+                <Link to="/app/order" className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">Total Order</Link>
             </div>
 
             {/* Number of Product Card */}
@@ -98,7 +98,7 @@ return (
                     <img className="w-5 h-5 overflow-visible" src={soldicon} alt="Sold Icon" />
                 </div>
                 <div className="text-greys-blue-grey-900 text-left font-2xl-semibold-font-family text-2xl-semibold-font-size leading-2xl-semibold-line-height font-2xl-semibold-font-weight absolute left-5 top-[76px]">{productList.length}</div>
-                <div className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">No of Product</div>
+                <Link to="/app/product" className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">No of Product</Link>
             </div>
 
             {/* Number of Customers Card */}
@@ -107,7 +107,7 @@ return (
                     <img className="w-5 h-5 overflow-visible" src={customericon} alt="Customer Icon" />
                 </div>
                 <div className="text-greys-blue-grey-900 text-left font-2xl-semibold-font-family text-2xl-semibold-font-size leading-2xl-semibold-line-height font-2xl-semibold-font-weight absolute left-5 top-[76px]">{customerCount}</div>
-                <div className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">No of Customers</div>
+                <Link to="/app/usermanagement" className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">No of Customers</Link>
             </div>
 
             {/* Number of Customers Card */}
@@ -115,7 +115,7 @@ return (
                 <div className="bg-[#151d48] rounded-[50%] w-10 h-10 absolute left-5 top-5 flex flex-row items-center justify-center">
                     <img className="w-5 h-5 overflow-visible" src={customericon} alt="Customer Icon" />
                 </div>
-                <div className="text-greys-blue-grey-900 text-left font-2xl-semibold-font-family text-2xl-semibold-font-size leading-2xl-semibold-line-height font-2xl-semibold-font-weight absolute left-5 top-[76px]">{adminCount}</div>
+                <Link to="/app/usermanagement" className="text-greys-blue-grey-900 text-left font-2xl-semibold-font-family text-2xl-semibold-font-size leading-2xl-semibold-line-height font-2xl-semibold-font-weight absolute left-5 top-[76px]">{adminCount}</Link>
                 <div className="text-[#425166] text-left font-base-medium-font-family text-base-medium-font-size leading-base-medium-line-height font-base-medium-font-weight absolute left-5 top-[116px]">No of Admins</div>
             </div>
         </div>
