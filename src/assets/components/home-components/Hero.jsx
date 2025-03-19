@@ -35,31 +35,23 @@ function Hero() {
             {/* Shop Button */}
             <Link
               to="/app/shop"
-              className="mt-8 flex flex-row items-center justify-center gap-2 px-6 py-3 md:px-[26px] md:py-[18px] border-2 border-black rounded-md max-w-[250px] md:max-w-[380px]"
+              className="mt-8 flex flex-row items-center justify-center gap-2 px-6 py-3 md:px-[26px] md:py-[18px] border-2 border-black rounded-md max-w-[250px] md:max-w-[380px] hover:bg-yellow-700 hover:text-white hover:border-none"
             >
-              <span className="text-black font-semibold text-[15px] md:text-[17.5px] uppercase">
+              <span className="font-semibold text-[15px] md:text-[17.5px] uppercase">
                 Shop Now
               </span>
-              <img
-                className="w-5 md:w-[21px]"
-                src={heroarrow}
-                alt="Arrow Icon"
-              />
+              <i className="fa-solid fa-cart-arrow-down"></i>
             </Link>
 
             {/* Track Button */}
             <Link
               to="/app/trackmyorder"
-              className="mt-8 flex flex-row items-center justify-center gap-2 px-6 py-3 md:px-[26px] md:py-[18px] border-2 border-black rounded-md max-w-[250px] md:max-w-[380px]"
+              className="mt-8 flex flex-row items-center justify-center gap-2 px-6 py-3 md:px-[26px] md:py-[18px] border-2 border-black rounded-md max-w-[250px] md:max-w-[380px] hover:bg-yellow-700 hover:text-white hover:border-none"
             >
-              <span className="text-black font-semibold text-[15px] md:text-[17.5px] uppercase">
-                Track Orders
+              <span className="font-semibold text-[15px] md:text-[17.5px] uppercase">
+                Track Orders 
               </span>
-              <img
-                className="w-5 md:w-[21px]"
-                src={heroarrow}
-                alt="Arrow Icon"
-              />
+              <i className="fa fa-truck"></i>
             </Link>
           </div>
         </div>

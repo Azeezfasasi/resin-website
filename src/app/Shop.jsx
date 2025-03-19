@@ -22,10 +22,15 @@ const Shop = () => {
     const [categoryFilter, setCategoryFilter] = useState("All");
     const [newProductFilter, setNewProductFilter] = useState("All");
     const [priceSort, setPriceSort] = useState("None");
-
+    const [popup, setPopup] = useState({ show: false, product: null });
+    
     const handleAddToCart = (product) => {
         addToCart(product);
-        alert("Product added to cart!");
+        setPopup({ show: true, product });
+    };
+
+    const closePopup = () => {
+        setPopup({ show: false, product: null });
     };
 
     // const handleAddToWishlist = (product) => {
@@ -165,6 +170,20 @@ const Shop = () => {
                         </button>
                     </div>
                 </div>
+
+                {/* Add to cart pop up */}
+                {popup.show && (
+                    <div className="fixed inset-0 flex items-center justify-center z-[9999]">
+                        <div className="bg-yellow-900 p-6 rounded-lg shadow-lg w-[350px] md:w-[400px] text-center relative">
+                            <div onClick={closePopup} className="w-[10%] absolute top-3 right-3 md:top-2 md:right-0 cursor-pointer text-white hover:text-black">
+                                <i className="fa-regular fa-rectangle-xmark text-[26px]"></i>
+                            </div>
+                            <h3 className="text-[24px] font-semibold text-white">Product Added!</h3>
+                            <p className="text-white mt-2 mb-3"><span className="font-semibold">{popup.product.name}</span> has been added to your cart.</p>
+                            <Link to="/app/cart" className="mt-0 bg-white text-black py-1 px-4 rounded hover:bg-blue-700 hover:text-white transition-colors">View Cart</Link>
+                        </div>
+                    </div>
+                )}
             </section>
             <RecentlyViewedProducts />
             <Footer />

@@ -28,9 +28,9 @@ function TimeMade() {
       <div className="flex flex-col items-start justify-start w-full">
         <div className="flex flex-col items-center justify-start w-full">
           <div className="text-nanuelectricscom-nero text-center md:text-left font-['Inter-Bold',_sans-serif] text-[20px] md:text-3xl leading-tight font-bold uppercase md:text-[48.28125px] md:leading-[76px] md:max-w-[1344px]">
-            Do you wanto learn how to make Resin?
+            Do you want to learn how to make Resin?
           </div>
-          <Link to="/app/resinregistrationform" className='text-white text-[22px] md:text-[28px] font-bold  border border-solid border-white py-[7px] px-[30px] mt-8 rounded-[8px]'>Register</Link>
+          <Link to="/app/resinregistrationform" className='text-white text-[22px] md:text-[28px] font-bold  border border-solid border-white py-[7px] px-[30px] mt-8 rounded-[8px] hover:bg-white hover:text-yellow-900'>Register</Link>
         </div> 
       </div>
     </div>

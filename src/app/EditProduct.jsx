@@ -11,6 +11,7 @@ function EditProduct() {
     const { products, updateProduct, loading: productsLoading, error: productsError } = useContext(ProductContext);
     const { id } = useParams();
     const navigate = useNavigate();
+    const [popup, setPopup] = useState({ show: false, product: null });
 
     const [productData, setProductData] = useState({
         name: "",
@@ -83,7 +84,8 @@ function EditProduct() {
     
         try {
             await updateProduct(formData);
-            alert("Product updated successfully!");
+            // alert("Product updated successfully!");
+            setPopup({ show: true});
             navigate("/app/product");
         } catch (error) {
             console.error("Error updating product:", error);
@@ -96,6 +98,10 @@ function EditProduct() {
     if (productsLoading) {
         return <p className="text-center text-lg font-semibold">Loading...</p>;
     }
+
+    const closePopup = () => {
+        setPopup({ show: false, product: null });
+    };
 
 return (
     <>
@@ -154,6 +160,19 @@ return (
                 </button>
             </form>
         </div>
+
+        {/* Submit popup */}
+      {popup.show && (
+            <div className="fixed inset-0 flex items-center justify-center z-[9999]">
+                <div className="bg-yellow-900 p-6 rounded-lg shadow-lg w-[350px] md:w-[400px] text-center relative">
+                    <div onClick={closePopup} className="w-[10%] absolute top-3 right-3 md:top-2 md:right-0 cursor-pointer text-white hover:text-black">
+                        <i className="fa-regular fa-rectangle-xmark text-[26px]"></i>
+                    </div>
+                    <h3 className="text-[24px] font-semibold text-white">Product Updated!</h3>
+                    <p className="text-white mt-2 mb-3"><span className="font-semibold">Product </span> has been updated successfully.</p>
+                </div>
+            </div>
+        )}
     </div>
     <MobileFooter />
     <WhatsAppChatRibbon />

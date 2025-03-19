@@ -18,9 +18,6 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // const addToCart = (product) => {
-  //   setCart((prevCart) => [...prevCart, product]);
-  // };
   const addToCart = (product) => {
     setCart((prevCart) => [
       ...prevCart,
