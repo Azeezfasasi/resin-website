@@ -156,7 +156,7 @@ const ProductSingle = () => {
                                         &gt;
                                     </button>
                                 </>
-                            )}
+                                )}
 
                                {/* Thumbnail Images */}
                                <div className="flex justify-center mt-3 gap-2">
@@ -168,13 +168,19 @@ const ProductSingle = () => {
                                         className={`w-16 h-16 object-cover rounded-md cursor-pointer ${index === currentImageIndex ? "border-2 border-yellow-900" : ""}`}
                                         onClick={() => setCurrentImageIndex(index)}
                                     />
-                                ))}
+                                    ))}
+                                </div>
+                                </>
+                            )}
+
+                            {/* Product Description */}
+                            <div className="border mt-5 pl-2 hidden lg:block pb-2">
+                                <div className="text-[26px] font-bold">Product Details</div>
+                                <p>{product.longDescription}</p>
                             </div>
-                        </>
-                    )}
-                </div>
+                        </div>
                         
-                {/* Product Details Section */}
+                        {/* Product Details Section */}
                            <div className="w-full md:w-1/2">
                                <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
                                <p className="text-gray-700 mb-4">{product.shortDescription}</p>
@@ -187,7 +193,13 @@ const ProductSingle = () => {
                                <br />
                                <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-400 transition-colors" onClick={() => handleOrderViaWhatsApp(product)}><i className="fa-brands fa-whatsapp"></i> Order Via WhatsApp</button>
                            </div>
-                       </div>
+
+                           {/* Product Description */}
+                           <div className="border mt-5 pl-2 block lg:hidden pb-3">
+                                <div className="text-[26px] font-bold">Product Details</div>
+                                <p>{product.longDescription}</p>
+                            </div>
+                    </div>
                    </div>
                </div>
 
