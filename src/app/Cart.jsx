@@ -36,7 +36,8 @@ return (
                     <div key={product._id} className="bg-white rounded-lg shadow-md p-4">
                       <Link to={`/app/product/${product._id}`}>
                         <img
-                          src={product.images}
+                          // src={product.images}
+                          src={Array.isArray(product.images) ? product.images[0] : product.images}
                           alt={product.name}
                           className="w-full h-48 object-contain rounded-md"
                         />

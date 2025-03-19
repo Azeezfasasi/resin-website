@@ -18,9 +18,19 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  // const addToCart = (product) => {
+  //   setCart((prevCart) => [...prevCart, product]);
+  // };
   const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
+    setCart((prevCart) => [
+      ...prevCart,
+      {
+        ...product,
+        images: Array.isArray(product.images) ? product.images[0] : product.images, // Ensure it's a string
+      },
+    ]);
   };
+  
 
   const removeFromCart = (id) => {
     setCart((prevCart) => prevCart.filter((product) => product._id !== id));
