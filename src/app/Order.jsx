@@ -6,7 +6,68 @@ import MobileFooter from '../assets/components/home-components/MobileFooter';
 import OrderStatusChart from '../assets/components/account-components/OrderChart';
 
 const Order = () => {
+    // const [orders, setOrders] = useState([]);
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const ordersPerPage = 8;
+    // const [totalOrders, setTotalOrders] = useState(0);
+
+    // useEffect(() => {
+    //     const fetchOrders = async () => {
+    //         try {
+    //             const response = await fetch('https://resin-backend.onrender.com/api/orders');
+    //             if (!response.ok) {
+    //                 throw new Error('Failed to fetch orders');
+    //             }
+    //             const data = await response.json();
+
+    //             // Sort orders by orderDate in descending order (most recent first)
+    //             const sortedOrders = data.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
+
+    //             setOrders(sortedOrders);
+    //             setTotalOrders(sortedOrders.length);
+    //         } catch (error) {
+    //             console.error('Error fetching orders:', error);
+    //             alert('Failed to fetch orders.');
+    //         }
+    //     };
+
+    //     fetchOrders();
+    // }, []);
+
+    // const handleOrderStatusChange = async (orderId, newStatus) => {
+    //     try {
+    //         const response = await fetch(`https://resin-backend.onrender.com/api/orders/${orderId}`, {
+    //             method: 'PUT',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({ orderStatus: newStatus }),
+    //         });
+
+    //         if (!response.ok) {
+    //             throw new Error('Failed to update order status');
+    //         }
+
+    //         setOrders(orders.map(order => order._id === orderId ? { ...order, orderStatus: newStatus } : order));
+
+    //     } catch (error) {
+    //         console.error('Error updating order status:', error);
+    //         alert('Failed to update order status.');
+    //     }
+    // };
+
+    // const indexOfLastOrder = currentPage * ordersPerPage;
+    // const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+    // const currentOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder);
+
+    // const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    // const nextPage = () => setCurrentPage(prev => Math.min(prev + 1, Math.ceil(totalOrders / ordersPerPage)));
+
+    // const prevPage = () => setCurrentPage(prev => Math.max(prev - 1, 1));
+
     const [orders, setOrders] = useState([]);
+    const [users, setUsers] = useState({}); // Store user data
     const [currentPage, setCurrentPage] = useState(1);
     const ordersPerPage = 8;
     const [totalOrders, setTotalOrders] = useState(0);
@@ -19,12 +80,33 @@ const Order = () => {
                     throw new Error('Failed to fetch orders');
                 }
                 const data = await response.json();
-
-                // Sort orders by orderDate in descending order (most recent first)
                 const sortedOrders = data.sort((a, b) => new Date(b.orderDate) - new Date(a.orderDate));
-
                 setOrders(sortedOrders);
                 setTotalOrders(sortedOrders.length);
+
+                // Fetch user data
+                const userPromises = sortedOrders.map(async (order) => {
+                    if (order.userId) {
+                        try {
+                            const userResponse = await fetch(`https://resin-backend.onrender.com/api/users/${order.userId}`);
+                            if (userResponse.ok) {
+                                const userData = await userResponse.json();
+                                return { userId: order.userId, name: `${userData.firstName} ${userData.lastName}`, email: userData.email };
+                            }
+                        } catch (error) {
+                            console.error(`Error fetching user data for order ${order._id}:`, error);
+                        }
+                    }
+                    return { userId: order.userId, name: 'Unknown', email: 'Unknown' }; // Default if no user data
+                });
+
+                const userResults = await Promise.all(userPromises);
+                const usersMap = {};
+                userResults.forEach((result) => {
+                    usersMap[result.userId] = { name: result.name, email: result.email };
+                });
+                setUsers(usersMap);
+
             } catch (error) {
                 console.error('Error fetching orders:', error);
                 alert('Failed to fetch orders.');
@@ -61,9 +143,7 @@ const Order = () => {
     const currentOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
     const nextPage = () => setCurrentPage(prev => Math.min(prev + 1, Math.ceil(totalOrders / ordersPerPage)));
-
     const prevPage = () => setCurrentPage(prev => Math.max(prev - 1, 1));
 
     return (
@@ -92,6 +172,8 @@ const Order = () => {
                     <table className="min-w-full bg-white border border-gray-200 rounded-md shadow-md">
                         <thead className="bg-gray-100">
                             <tr>
+                                <th className="py-2 px-4 border-b">Customer's Name</th>
+                                <th className="py-2 px-4 border-b">Customer's Email</th>
                                 <th className="py-2 px-4 border-b">Order Number</th>
                                 <th className="py-2 px-4 border-b">Order Date</th>
                                 <th className="py-2 px-4 border-b">Product Name</th>
@@ -102,6 +184,8 @@ const Order = () => {
                         <tbody>
                             {currentOrders.map((order, index) => (
                                 <tr key={index} className="hover:bg-gray-50">
+                                    <td className="py-2 px-4 border-b">{users[order.userId]?.name || 'Unknown'}</td>
+                                    <td className="py-2 px-4 border-b">{users[order.userId]?.email || 'Unknown'}</td>
                                     <td className="py-2 px-4 border-b">{order.orderNumber}</td>
                                     <td className="py-2 px-4 border-b">{new Date(order.orderDate).toLocaleDateString()}</td>
                                     <td className="py-2 px-4 border-b">{order.productName}</td>

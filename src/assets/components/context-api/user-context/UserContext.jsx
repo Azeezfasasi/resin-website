@@ -71,51 +71,19 @@ export const UserProvider = ({ children }) => {
   };
 
   // Edit User Details
-// const editUser = async (userId, updatedData) => {
-//   try {
-//     const token = localStorage.getItem('token');
-//     console.log("Token:", token);
-//     console.log("API Base URL:", api);
-//     console.log("User ID:", userId);
-//     const apiUrl = "https://resin-backend.onrender.com/api/users/" + userId;
-//     console.log("Edit User API URL:", apiUrl);
-//     console.log("API Base URL:", api, typeof api);
-//     const response = await axios.put(apiUrl, updatedData, {
-//       headers: { Authorization: `Bearer ${token}` }, // Corrected Bearer format
-//     });
-//     console.log("editUser Response:", response.data);
-//     const getMeResponse = await axios.get(`${api}/me`, {
-//       headers: { Authorization: `Bearer ${token}` }, // Corrected Bearer format
-//     });
-//     console.log("getMe Response:", getMeResponse.data);
-//     setUser(getMeResponse.data);
-//     localStorage.setItem("user", JSON.stringify(getMeResponse.data)); // Update localStorage
-//     return response.data;
-//   } catch (error) {
-//     console.error('Failed to edit user', error);
-//     throw error;
-//   }
-// };
 const editUser = async (userId, updatedData, headers) => {
   try {
     const token = localStorage.getItem('token');
-    console.log('Token:', token);
-    console.log('API Base URL:', api);
-    console.log('User ID:', userId);
     const apiUrl = 'https://resin-backend.onrender.com/api/users/' + userId;
-    console.log('Edit User API URL:', apiUrl);
-    console.log('API Base URL:', api, typeof api);
     const response = await axios.put(apiUrl, updatedData, {
       headers: {
         Authorization: `Bearer ${token}`,
         ...headers,
       },
     });
-    console.log('editUser Response:', response.data);
     const getMeResponse = await axios.get(`${api}/me`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log('getMe Response:', getMeResponse.data);
     setUser(getMeResponse.data);
     localStorage.setItem('user', JSON.stringify(getMeResponse.data));
     return response.data;

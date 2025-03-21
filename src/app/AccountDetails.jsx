@@ -16,6 +16,8 @@ const { user, editUser } = useContext(UserContext);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [profileImage, setProfileImage] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [popup, setPopup] = useState({ show: false, product: null });
 
     useEffect(() => {
         if (user) {
@@ -38,72 +40,58 @@ const { user, editUser } = useContext(UserContext);
       setProfileImage(e.target.files[0]);
     };
 
-    // const handleSubmit = async (e) => {
-    //   e.preventDefault();
-    //   const currentUser = user; // Create a local copy of the user object
-    //   console.log('handleSubmit called. User:', currentUser); // Debugging
-    //   if (currentUser && currentUser._id) {
-    //     if (password && password !== confirmPassword) {
-    //       alert('Passwords do not match.');
-    //       return;
-    //     }
-    //     try {
-    //       const updatedData = { ...userData };
-    //       if (password) {
-    //         updatedData.password = password;
-    //       }
-    //       await editUser(currentUser._id, updatedData);
-    //       alert('Profile updated successfully!');
-    //     } catch (error) {
-    //       console.error('Failed to update profile', error);
-    //       alert('Failed to update profile.');
-    //     }
-    //   } else {
-    //     console.error('User or user._id is undefined');
-    //     alert('User data is not available.');
-    //   }
-    // };
+    // Handling submit
     const handleSubmit = async (e) => {
       e.preventDefault();
+      setIsLoading(true); // Set loading to true
       const currentUser = user;
-      console.log('handleSubmit called. User:', currentUser);
-    
+
       if (currentUser && currentUser._id) {
-        if (password && password !== confirmPassword) {
-          alert('Passwords do not match.');
-          return;
-        }
-        try {
-          const formData = new FormData();
-          formData.append('firstName', userData.firstName);
-          formData.append('lastName', userData.lastName);
-          formData.append('email', userData.email);
-          if (password) {
-            formData.append('password', password);
+          if (password && password !== confirmPassword) {
+              alert('Passwords do not match.');
+              setIsLoading(false);
+              return;
           }
-          if (profileImage) {
-            formData.append('profileImage', profileImage);
+          try {
+              const formData = new FormData();
+              formData.append('firstName', userData.firstName);
+              formData.append('lastName', userData.lastName);
+              formData.append('email', userData.email);
+              if (password) {
+                  formData.append('password', password);
+              }
+              if (profileImage) {
+                  formData.append('profileImage', profileImage);
+              }
+
+              await editUser(currentUser._id, formData, {
+                  headers: {
+                      'Content-Type': 'multipart/form-data',
+                  },
+              });
+              setPopup({ show: true});
+          } 
+          catch (error) {
+              console.error('Failed to update profile', error);
+              alert('Failed to update profile.');
+          } finally {
+              setIsLoading(false);
           }
-    
-          await editUser(currentUser._id, formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          });
-          alert('Profile updated successfully!');
-        } catch (error) {
-          console.error('Failed to update profile', error);
-          alert('Failed to update profile.');
-        }
+          // setPopup({ show: true});
       } else {
-        console.error('User or user._id is undefined');
-        alert('User data is not available.');
+          console.error('User or user._id is undefined');
+          alert('User data is not available.');
+          setIsLoading(false);
       }
-    };
+  };
 
     if (!user) {
         return <p>Loading or user not logged in.</p>;
     }
+
+  const closePopup = () => {
+    setPopup({ show: false, product: null });
+  };
 
 
   return (
@@ -165,13 +153,6 @@ const { user, editUser } = useContext(UserContext);
             </div>
 
             {/* Profile Image */}
-            {/* <div>
-              <label className='block text-sm font-medium mb-1'>Profile Image:</label>
-              <input
-                type="file"
-                className='w-full border p-2 rounded'
-              />
-            </div> */}
             <div>
               <label className='block text-sm font-medium mb-1'>Profile Image:</label>
               <input
@@ -204,11 +185,34 @@ const { user, editUser } = useContext(UserContext);
                 className='w-full border p-2 rounded'
               />
             </div>
-            {/* Add other input fields for user properties */}
-            <button type="submit" className='bg-yellow-900 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>Save Changes</button>
+            {/* Submit button */}
+            <button
+              type="submit"
+              className='bg-yellow-900 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+              disabled={isLoading}
+          >
+              {isLoading ? (
+                  <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white text-center mx-auto"></div>
+              ) : (
+                  'Save Changes'
+              )}
+          </button>
           </form>
         </div>
       </div>
+
+      {/* Submit popup */}
+      {popup.show && (
+        <div className="fixed inset-0 flex items-center justify-center z-[9999] mx-auto w-full border">
+            <div className="bg-yellow-900 p-6 rounded-lg shadow-lg w-[350px] md:w-[400px] lg:ml-48 text-center relative">
+                <div onClick={closePopup} className="w-[10%] absolute top-3 right-3 md:top-2 md:right-0 cursor-pointer text-white hover:text-black">
+                    <i className="fa-regular fa-rectangle-xmark text-[26px]"></i>
+                </div>
+                <h3 className="text-[24px] font-semibold text-white">Product Added!</h3>
+                <p className="text-white mt-2 mb-3">Account details updated successfully.</p>
+            </div>
+        </div>
+      )}
     </div>
     <MobileFooter />
     </>

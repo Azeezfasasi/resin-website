@@ -46,8 +46,8 @@ function AccountHeader() {
                 <div className="flex flex-row items-center justify-center cursor-pointer" onClick={toggleDropdown}>
                     <div className="relative">
                         <img
-                            className="rounded-[50%] w-[40px] h-[40px] md:w-[60px] md:h-[60px] object-cover"
-                            src={profile}
+                            className="rounded-[50%] w-[40px] h-[40px] lg:w-[50px] lg:h-[50px] object-cover"
+                            src={user?.profileImage || profile}
                             alt="Profile"
                         />
                     </div>
