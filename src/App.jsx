@@ -27,6 +27,7 @@ import TrackMyOders from "./app/TrackMyOrder";
 import UserManagement from "./app/UserManagement";
 import CategoryProducts from "./app/CategoryProducts";
 import Wishlist from "./app/Wishlist";
+import OrderSuccess from "./app/OrderSuccess";
 
 function App() {
   return (
@@ -48,11 +49,12 @@ function App() {
           <Route path="/app/trackmyorder" element={<TrackMyOders />} />
           <Route path="/app/category/:category" element={<CategoryProducts />} />
           <Route path="/app/wishlist" element={<Wishlist />} />
+          <Route path="/app/checkout" element={<Checkout />} />
+          <Route path="/app/ordersuccess" element={<OrderSuccess />} />
 
           {/*  Protected Routes */}
           <Route path="/app/myaccount" element={<ProtectedRoute><MyAccount /></ProtectedRoute>} />
           <Route path="/app/product" element={<ProtectedRoute><Product /></ProtectedRoute>} />
-          <Route path="/app/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
           <Route path="/app/order" element={<ProtectedRoute><Order /></ProtectedRoute>} />
           <Route path="/app/billingaddress" element={<ProtectedRoute><BillingAddress /></ProtectedRoute>} />
           <Route path="/app/message" element={<ProtectedRoute><Message /></ProtectedRoute>} />

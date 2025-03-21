@@ -47,7 +47,7 @@ function TrackMyOrders() {
             </Helmet>
             <TopHeader />
             <MainHeader />
-            <div className='w-full h-screen flex flex-row justify-start border'>
+            <div className='w-full min-h-screen flex flex-row justify-start border'>
                 <div className='w-full flex flex-col'>
                     <div className='w-[80%] lg:w-[60%] mx-auto my-10 flex flex-col gap-3'>
                         <div className='font-semibold text-[20px]'>Track Your Orders</div>
@@ -81,16 +81,25 @@ function TrackMyOrders() {
                         </form>
 
                         {trackingResult && (
-                            <div className='mt-4'>
+                            <div className='mt-2 lg:mt-4 border py-3 px-2 rounded shadow-md'>
                                 {trackingResult.message ? (
                                     <p>{trackingResult.message}</p>
                                 ) : (
                                     <>
-                                        <p><strong>Order Number:</strong> {trackingResult.orderNumber}</p>
-                                        <p><strong>Product Name:</strong> {trackingResult.productName}</p>
-                                        <p><strong>Order Status:</strong> {trackingResult.orderStatus}</p>
-                                        <p><strong>Order Date:</strong> {trackingResult.orderDate}</p>
-                                        <p><strong>Product Amount:</strong> {trackingResult.amount}</p>
+                                    <div className='w-full lg:w-[60%] flex flex-col items-center border py-2 px-2 mx-auto bg-yellow-100 rounded mb-3'>
+                                        <div className='text-[18px] lg:text-[26px]'>Order Status: <span className='font-bold'>{trackingResult.orderStatus}</span></div>
+                                    </div>
+                                    <p><strong>Order Number: </strong> {trackingResult.orderNumber}</p>
+                                    <p><strong>Product Name: </strong> {trackingResult.productName}</p>
+                                    <p><strong>Order Status: </strong> 
+                                    {trackingResult.orderStatus}</p>
+                                    <p><strong>Customer's Name: </strong> {trackingResult.firstName} {trackingResult.lastName}</p>
+                                    <p><strong>Customer's Phone: </strong> {trackingResult.phone}</p>
+                                    <p><strong>Shipping Address: </strong> {trackingResult.streetAddress}</p>
+                                    <p><strong>State: </strong> {trackingResult.state}</p>
+                                    <p><strong>Town: </strong> {trackingResult.townCity}</p>
+                                    <p><strong>Order Date: </strong> {trackingResult.orderDate}</p>
+                                    <p><strong>Product Amount: </strong> {trackingResult.amount}</p>
                                     </>
                                 )}
                             </div>

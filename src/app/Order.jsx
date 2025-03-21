@@ -85,7 +85,7 @@ const Order = () => {
                 <MyAccountMenu />
             </div>
 
-            <div className='w-full flex flex-col'>
+            <div className='w-full flex flex-col overflow-x-hidden'>
                 <AccountHeader />
               <div className="w-[95%] lg:w-[80%] mx-auto mt-8 lg:h-[80vh] overflow-y-scroll overflow-x-hidden">
                 <h2 className="text-2xl font-semibold mb-6">Order History</h2>
@@ -102,9 +102,14 @@ const Order = () => {
                         <thead className="bg-gray-100">
                             <tr>
                                 <th className="py-2 px-4 border-b">Order Number</th>
+                                <th className="py-2 px-4 border-b">Customer Name</th>
+                                <th className="py-2 px-4 border-b">Customer Email</th>
+                                <th className="py-2 px-4 border-b">Customer Phone</th>
                                 <th className="py-2 px-4 border-b">Order Date</th>
                                 <th className="py-2 px-4 border-b">Product Name</th>
                                 <th className="py-2 px-4 border-b">Amount</th>
+                                <th className="py-2 px-4 border-b">Shipping Address</th>
+                                <th className="py-2 px-4 border-b">Shipping State</th>
                                 <th className="py-2 px-4 border-b">Order Status</th>
                             </tr>
                         </thead>
@@ -112,9 +117,14 @@ const Order = () => {
                             {currentOrders.map((order, index) => (
                                 <tr key={index} className="hover:bg-gray-50">
                                     <td className="py-2 px-4 border-b">{order.orderNumber}</td>
+                                    <td className="py-2 px-4 border-b">{order.firstName} {order.lastName}</td>
+                                    <td className="py-2 px-4 border-b">{order.email}</td>
+                                    <td className="py-2 px-4 border-b">{order.phone}</td>
                                     <td className="py-2 px-4 border-b">{new Date(order.orderDate).toLocaleDateString()}</td>
                                     <td className="py-2 px-4 border-b">{order.productName}</td>
                                     <td className="py-2 px-4 border-b">₦{order.amount}</td>
+                                    <td className="py-2 px-4 border-b">{order.streetAddress}</td>
+                                    <td className="py-2 px-4 border-b">{order.state}</td>
                                     <td className="py-2 px-4 border-b">
                                         <select value={order.orderStatus} onChange={(e) => handleOrderStatusChange(order._id, e.target.value)} className="border rounded p-1">
                                             <option value="Pending">Pending</option>
