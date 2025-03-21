@@ -3,9 +3,9 @@ import saidat from '../../images/saidat.png';
 
 function About() {
   return (
-    <div className="border-solid border-nanuelectricscom-black border-t-2 pt-0.5 flex flex-col md:flex-row gap-0 items-center justify-start relative overflow-hidden">
+    <div className="border-solid border-nanuelectricscom-black border-t-2 pt-0.5 flex flex-col md:flex-col lg:flex-row gap-0 items-center justify-start relative overflow-hidden">
       {/* Left Section */}
-      <div className="bg-nanuelectricscom-nero flex flex-col items-center justify-start w-full md:w-1/2">
+      <div className="bg-nanuelectricscom-nero flex flex-col items-center justify-start w-full lg:w-1/2">
         <div className="min-h-[300px] md:min-h-[400px] w-full relative overflow-hidden">
           <img
             className="w-full h-full object-cover"
@@ -16,7 +16,7 @@ function About() {
       </div>
 
       {/* Right Section */}
-      <div className="bg-nanuelectricscom-nero px-6 py-8 md:px-32 md:py-[159.09px] flex flex-col items-center justify-start w-full md:w-1/2">
+      <div className="bg-nanuelectricscom-nero px-6 py-8 lg:px-32 lg:py-[159.09px] flex flex-col items-center justify-start w-full lg:w-1/2">
         <div className="flex flex-col items-start justify-start w-full">
           {/* Title */}
           <div className="text-nanuelectricscom-black text-center md:text-left font-bold text-xl md:text-3xl uppercase mb-6">

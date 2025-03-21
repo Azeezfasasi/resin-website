@@ -25,7 +25,7 @@ function AccountHeader() {
     <div className="w-full border sticky top-0 z-10">
         <div className="bg-color-white w-full h-[70px] flex flex-row items-center justify-between">
             {/* logo */}
-            <div className="text-greys-blue-grey-900 text-left font-4xl-semibold-font-family text-[26px] leading-4xl-semibold-line-height font-4xl-semibold-font-weight relative hidden md:block ml-0 md:ml-[20px]">
+            <div className="text-greys-blue-grey-900 text-left font-4xl-semibold-font-family text-[26px] leading-4xl-semibold-line-height font-4xl-semibold-font-weight relative hidden md:block ml-0 md:ml-[60px] lg:ml-[20px]">
             Dashboard
             </div>
 

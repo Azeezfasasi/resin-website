@@ -47,7 +47,7 @@ return (
     </Helmet>
     <div className='w-full flex flex-row justify-start border mb-[80px] lg:mb-0'>
         {/* Menu section */}
-        <div className='w-[0%] md:w-[20%]'>
+        <div className='w-[0%] lg:w-[20%]'>
             <MyAccountMenu />
         </div>
         {/* Main Account Section */}

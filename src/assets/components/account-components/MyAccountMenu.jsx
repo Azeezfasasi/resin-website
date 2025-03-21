@@ -47,7 +47,7 @@ function MyAccountMenu() {
     <Helmet>
       <title>My Account - Resin By Saidat</title>
     </Helmet>
-      <div className="flex items-center p-4 lg:hidden fixed top-[8px] md:hidden left-[0px] z-[50] bg-transparent">
+      <div className="flex items-center p-4 lg:hidden fixed top-[8px] left-[0px] z-[50] bg-transparent">
         <i className="fa fa-bars" onClick={toggleMenu}></i>
       </div>
       <div className="w-full h-screen flex border">

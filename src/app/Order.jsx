@@ -72,7 +72,7 @@ const Order = () => {
             <title>Orders - Resin By Saidat</title>
         </Helmet>
         <div className='w-full flex flex-row justify-start border mb-[100px] lg:mb-0'>
-            <div className='w-[0%] md:w-[20%]'>
+            <div className='w-[0%] lg:w-[20%]'>
                 <MyAccountMenu />
             </div>
 

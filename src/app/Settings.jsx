@@ -28,7 +28,7 @@ function Settings() {
     </Helmet>
     <div className='w-full flex flex-row justify-start border'>
       {/* Menu section */}
-      <div className='w-[0%] md:w-[20%]'>
+      <div className='w-[0%] lg:w-[20%]'>
         <MyAccountMenu />
       </div>
 

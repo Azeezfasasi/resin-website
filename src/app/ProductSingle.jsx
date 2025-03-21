@@ -133,9 +133,9 @@ const ProductSingle = () => {
             <MainHeader />
             <div className="product-single-section py-16 mb-[0px] lg:mb-0">
                 <div className="container mx-auto px-4">
-                    <div className="flex flex-col md:flex-row gap-6">
+                    <div className="flex flex-col lg:flex-row gap-6">
                         {/* Product Image Section */}
-                       <div className="w-full md:w-1/2 relative">
+                       <div className="w-full lg:w-1/2 relative">
                        {product?.images?.length > 0 && (
                         <>
                             <img
@@ -181,7 +181,7 @@ const ProductSingle = () => {
                         </div>
                         
                         {/* Product Details Section */}
-                           <div className="w-full md:w-1/2">
+                           <div className="w-full lg:w-1/2">
                                <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
                                <p className="text-gray-700 mb-4">{product.shortDescription}</p>
                                <p className="text-xl font-semibold mb-4">₦{product.price}</p>

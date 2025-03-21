@@ -15,6 +15,7 @@ const { user, editUser } = useContext(UserContext);
     });
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [profileImage, setProfileImage] = useState(null);
 
     useEffect(() => {
         if (user) {
@@ -27,32 +28,77 @@ const { user, editUser } = useContext(UserContext);
         }
     }, [user]);
 
+    // Handle user details change
     const handleChange = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.value });
     };
 
+    // Handle profile image
+    const handleImageChange = (e) => {
+      setProfileImage(e.target.files[0]);
+    };
+
+    // const handleSubmit = async (e) => {
+    //   e.preventDefault();
+    //   const currentUser = user; // Create a local copy of the user object
+    //   console.log('handleSubmit called. User:', currentUser); // Debugging
+    //   if (currentUser && currentUser._id) {
+    //     if (password && password !== confirmPassword) {
+    //       alert('Passwords do not match.');
+    //       return;
+    //     }
+    //     try {
+    //       const updatedData = { ...userData };
+    //       if (password) {
+    //         updatedData.password = password;
+    //       }
+    //       await editUser(currentUser._id, updatedData);
+    //       alert('Profile updated successfully!');
+    //     } catch (error) {
+    //       console.error('Failed to update profile', error);
+    //       alert('Failed to update profile.');
+    //     }
+    //   } else {
+    //     console.error('User or user._id is undefined');
+    //     alert('User data is not available.');
+    //   }
+    // };
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (user && user._id) { // Added check for user and user._id
-            if (password && password !== confirmPassword) {
-                alert("Passwords do not match.");
-                return;
-            }
-            try {
-                const updatedData = { ...userData };
-                if (password) {
-                    updatedData.password = password;
-                }
-                await editUser(user._id, updatedData);
-                alert('Profile updated successfully!');
-            } catch (error) {
-                console.error('Failed to update profile', error);
-                alert('Failed to update profile.');
-            }
-        } else {
-            console.error("User or user._id is undefined");
-            alert("User data is not available.");
+      e.preventDefault();
+      const currentUser = user;
+      console.log('handleSubmit called. User:', currentUser);
+    
+      if (currentUser && currentUser._id) {
+        if (password && password !== confirmPassword) {
+          alert('Passwords do not match.');
+          return;
         }
+        try {
+          const formData = new FormData();
+          formData.append('firstName', userData.firstName);
+          formData.append('lastName', userData.lastName);
+          formData.append('email', userData.email);
+          if (password) {
+            formData.append('password', password);
+          }
+          if (profileImage) {
+            formData.append('profileImage', profileImage);
+          }
+    
+          await editUser(currentUser._id, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+          alert('Profile updated successfully!');
+        } catch (error) {
+          console.error('Failed to update profile', error);
+          alert('Failed to update profile.');
+        }
+      } else {
+        console.error('User or user._id is undefined');
+        alert('User data is not available.');
+      }
     };
 
     if (!user) {
@@ -67,7 +113,7 @@ const { user, editUser } = useContext(UserContext);
     </Helmet>
     <div className='w-full flex flex-row justify-start border'>
       {/* Menu section */}
-      <div className='w-[0%] md:w-[20%]'>
+      <div className='w-[0%] lg:w-[20%]'>
         <MyAccountMenu />
       </div>
 
@@ -115,6 +161,23 @@ const { user, editUser } = useContext(UserContext);
                 onChange={handleChange}
                 className='w-full border p-2 rounded'
                 autoComplete='email'
+              />
+            </div>
+
+            {/* Profile Image */}
+            {/* <div>
+              <label className='block text-sm font-medium mb-1'>Profile Image:</label>
+              <input
+                type="file"
+                className='w-full border p-2 rounded'
+              />
+            </div> */}
+            <div>
+              <label className='block text-sm font-medium mb-1'>Profile Image:</label>
+              <input
+                type="file"
+                className='w-full border p-2 rounded'
+                onChange={handleImageChange}
               />
             </div>
 

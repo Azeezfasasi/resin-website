@@ -15,12 +15,12 @@ function MyAccount() {
     </Helmet>
     <div className='w-full flex flex-row justify-start border'>
       {/* Menu section */}
-      <div className='w-[0%] md:w-[20%]'>
+      <div className='w-[0%] lg:w-[20%]'>
         <MyAccountMenu />
       </div>
 
       {/* Main Account Section */}
-      <div className='w-[100%] md:w-[80%] flex flex-col items-start justify-start '>
+      <div className='w-[100%] lg:w-[80%] flex flex-col items-start justify-start '>
         <AccountHeader />
         <TotalSales />
       </div>

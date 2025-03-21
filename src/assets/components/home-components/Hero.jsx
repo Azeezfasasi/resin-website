@@ -6,9 +6,9 @@ import resinhero from '../../images/resinhero.png';
 
 function Hero() {
   return (
-    <div className="w-full pt-0.5 flex flex-col md:flex-row gap-0 items-center justify-center relative overflow-hidden">
+    <div className="w-full pt-0.5 flex flex-col md:flex-col lg:flex-row gap-0 items-center justify-center relative overflow-hidden">
       {/* Left Section */}
-      <div className="w-full md:w-[40%] flex flex-col items-center justify-start relative">
+      <div className="w-full lg:w-[40%] flex flex-col items-center justify-start relative">
         <div className="flex flex-col items-center justify-center w-full relative">
           <img
             className="w-full h-auto md:h-[520px] object-cover"
@@ -19,7 +19,7 @@ function Hero() {
       </div>
 
       {/* Right Section */}
-      <div className="w-full md:w-[60%] pt-12 px-6 md:px-20 pb-12 flex flex-col items-center justify-center relative text-center md:text-left">
+      <div className="w-full lg:w-[60%] pt-12 px-6 md:px-20 pb-12 flex flex-col items-center justify-center relative text-center md:text-left">
         <div className="flex flex-col items-center md:items-start justify-center">
           {/* Title */}
           <h1 className="text-black font-semibold text-[24px] md:text-[33px] leading-[30px] md:leading-[40.7px] uppercase">
@@ -31,7 +31,7 @@ function Hero() {
           Discover our high-quality resins, designed for endless possibilities in crafting, construction, and manufacturing. Whether you're creating stunning art pieces, durable industrial components, or unique home decor, our resins offer unmatched strength, clarity, and versatility.
           </p>
 
-          <div className="flex flex-col lg:flex-row gap-0 lg:gap-3">
+          <div className="flex flex-col md:flex-row lg:flex-row gap-0 md:gap-3 lg:gap-3 self-center lg:self-start">
             {/* Shop Button */}
             <Link
               to="/app/shop"
