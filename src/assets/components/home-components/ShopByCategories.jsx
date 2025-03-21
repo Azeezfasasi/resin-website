@@ -1,11 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ProductContext } from '../context-api/product-context/ProductContext'; // Adjust path
+import LoadingSpinner from '../LoadingSpinner';
 
 const ShopByCategories = () => {
     const { products, loading } = useContext(ProductContext);
+    // const [loading, setLoading] = useState(false);
 
     const categories = products ? [...new Set(products.map((product) => product.category).filter(Boolean))] : [];
+
+    if (loading) {
+        return <LoadingSpinner />;
+    }
 
     return (
         <section className="py-8 mb-[-80px] lg:mb-[-60px]">

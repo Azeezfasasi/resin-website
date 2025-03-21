@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ProductContext } from "../assets/components/context-api/product-context/ProductContext";
 import MobileFooter from '../assets/components/home-components/MobileFooter';
 import WhatsAppChatRibbon from '../assets/components/home-components/WhatsappChatRibbon';
+import LoadingSpinner from '../assets/components/LoadingSpinner';
 
 function Product() {
     const { products, deleteProduct, loading, error } = useContext(ProductContext);
@@ -52,7 +53,8 @@ function Product() {
     };
 
     if (loading) {
-        return <p>Loading products...</p>;
+        return <LoadingSpinner />;
+
     }
 
     if (error) {

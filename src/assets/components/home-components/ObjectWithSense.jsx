@@ -7,12 +7,14 @@ import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { ProductContext } from "../context-api/product-context/ProductContext";
 import { useCart } from "../context-api/product-context/CartContext";
+import LoadingSpinner from "../LoadingSpinner";
 
 const ObjectWithSense = () => {
-    const { products } = useContext(ProductContext);
+    const { products, loading } = useContext(ProductContext);
     const { addToCart } = useCart();
     const [popup, setPopup] = useState({ show: false, product: null });
-
+    // const [loading, setLoading] = useState(false);
+    
     const handleAddToCart = (product) => {
         addToCart(product);
         setPopup({ show: true, product });
@@ -25,6 +27,10 @@ const ObjectWithSense = () => {
 
     // Limit to the first 10 products
     const limitedProducts = products && products.length > 0 ? products.slice(0, 10) : [];
+
+    if (loading) {
+        return <LoadingSpinner />;
+    }
 
     return (
         <section className="shop-section py-16">

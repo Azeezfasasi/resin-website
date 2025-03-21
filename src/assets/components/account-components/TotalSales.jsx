@@ -6,6 +6,7 @@ import customericon from '../../images/customericon.svg';
 import { Link } from 'react-router-dom';
 import { ProductContext } from "../context-api/product-context/ProductContext";
 import OrderStatusChart from './OrderChart';
+import LoadingSpinner from '../LoadingSpinner';
 
 
 function TotalSales() {
@@ -15,7 +16,8 @@ function TotalSales() {
     const [customerCount, setCustomerCount] = useState(0);
     const [adminCount, setAdminCount] = useState(0);
     const [orders, setOrders] = useState([]);
-
+    const [loading, setLoading] = useState(false);
+    
     const { products} = useContext(ProductContext);
     // Ensure products is always an array
     const productList = Array.isArray(products) ? products : [];
@@ -31,6 +33,7 @@ function TotalSales() {
     // Fetch User roles
     useEffect(() => {
       const fetchRoleCounts = async () => {
+            setLoading(true);
           try {
               const response = await fetch('https://resin-backend.onrender.com/api/users/role-counts'); // Adjust URL as needed
               if (!response.ok) {
@@ -41,7 +44,9 @@ function TotalSales() {
               setAdminCount(data.adminCount);
           } catch (error) {
               console.error('Error fetching role counts:', error);
-          }
+          } finally {
+            setLoading(false);
+        }
       };
 
       fetchRoleCounts();
@@ -65,6 +70,11 @@ function TotalSales() {
 
     fetchOrders();
 }, []);
+
+if (loading) {
+    return <LoadingSpinner />;
+
+}
 
 return (
     <>

@@ -10,9 +10,10 @@ import MobileFooter from "../assets/components/home-components/MobileFooter";
 import RecentlyViewedProducts from "../assets/components/home-components/RecentlyViewedProducts";
 import Footer from "../assets/components/home-components/Footer";
 import { useWishlist } from "../assets/components/context-api/product-context/WishlistContext";
+import LoadingSpinner from "../assets/components/LoadingSpinner";
 
 const Shop = () => {
-    const { products } = useContext(ProductContext);
+    const { products, loading } = useContext(ProductContext);
     const { addToCart } = useCart();
     // const { addToWishlist } = useWishlist();
 
@@ -76,6 +77,10 @@ const Shop = () => {
     const nextPage = () => setCurrentPage(prev => Math.min(prev + 1, totalPages));
 
     const prevPage = () => setCurrentPage(prev => Math.max(prev - 1, 1));
+
+    if (loading) {
+        return <LoadingSpinner />;
+    }
 
     return (
         <>
