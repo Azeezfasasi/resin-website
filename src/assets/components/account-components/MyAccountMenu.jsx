@@ -91,7 +91,7 @@ function MyAccountMenu() {
             }
           >
             <i className="fa-solid fa-cart-arrow-down"></i>
-            {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">My Orders</span>}
+            {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Recived Orders</span>}
           </NavLink>
 
           <NavLink
@@ -186,6 +186,18 @@ function MyAccountMenu() {
           </NavLink>
 
           <NavLink
+            to="/app/CustomerOrder"
+            className={({ isActive }) =>
+              `flex items-center p-4 dark:hover:bg-gray-700 ${
+                isActive ? "bg-gray-200 dark:bg-gray-700" : ""
+              }`
+            }
+          >
+            <i className="fa-solid fa-cart-arrow-down"></i>
+            {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">My Orders</span>}
+          </NavLink>
+
+          <NavLink
             to="/app/trackorders"
             className={({ isActive }) =>
               `flex items-center p-4 dark:hover:bg-gray-700 ${
@@ -198,6 +210,18 @@ function MyAccountMenu() {
           </NavLink>
 
           <NavLink
+            to=""
+            className={({ isActive }) =>
+              `flex items-center p-4 dark:hover:bg-gray-700 ${
+                isActive ? "bg-gray-200 dark:bg-gray-700" : ""
+              }`
+            }
+          >
+            <i className="fa-solid fa-cart-arrow-down"></i>
+            {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Shipping Address</span>}
+          </NavLink>
+
+          <NavLink
             to="/app/accountdetails"
             className={({ isActive }) =>
               `flex items-center p-4 dark:hover:bg-gray-700 ${
@@ -207,6 +231,18 @@ function MyAccountMenu() {
           >
             <i className="fa-solid fa-user"></i>
             {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Account Details</span>}
+          </NavLink>
+
+          <NavLink
+            to="/app/settings"
+            className={({ isActive }) =>
+              `flex items-center p-4 dark:hover:bg-gray-700 ${
+                isActive ? "bg-gray-200 dark:bg-gray-700" : ""
+              }`
+            }
+          >
+            <i className="fa-solid fa-cart-arrow-down"></i>
+            {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Settings</span>}
           </NavLink>
 
           <NavLink onClick={handleLogout}
