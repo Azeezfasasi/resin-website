@@ -166,7 +166,7 @@ const CustomerOrder = () => {
                                 )}
                                 <div className="flex justify-end mt-4">
                                     <button onClick={printOrder} className="bg-yellow-900 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded mr-2">
-                                        <i class="fa-solid fa-print"></i> Print
+                                        <i className="fa-solid fa-print"></i> Print
                                     </button>
                                     <button onClick={closeModal} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                                         Close

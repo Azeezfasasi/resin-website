@@ -39,7 +39,7 @@ function CustomerOrderCount() {
 
     return (
         <>
-            <div className='w-[100%] md:w-[95%] flex flex-col items-center justify-start gap-8 rounded-[20px] relative bg-[#ffffff] px-[10px] py-[20px] md:ml-[10px] mb-[0px] lg:mb-0 border mt-[-40px] z-[99999]'>
+            <div className='w-[100%] md:w-[95%] flex flex-col items-center justify-start gap-8 rounded-[20px] relative bg-[#ffffff] px-[10px] py-[20px] md:ml-[10px] mb-[0px] lg:mb-0 border mt-[-40px]'>
                 {/* Cards section */}
                 <div className='w-full flex flex-col md:flex-row items-center justify-center md:items-start gap-0 md:gap-5'>
                     {/* Total Order Card*/}
