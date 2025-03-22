@@ -6,6 +6,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   // const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]); // Store all users (admin feature)
+  const [userLoading, setUserLoading] = useState(false);
 
   const [user, setUser] = useState(() => {
     // Load user from localStorage on page load
@@ -71,25 +72,30 @@ export const UserProvider = ({ children }) => {
   };
 
   // Edit User Details
-const editUser = async (userId, updatedData, headers) => {
+const editUser = async (userId, updatedData, headers = {}) => {
+  setUserLoading(true);
   try {
     const token = localStorage.getItem('token');
-    const apiUrl = 'https://resin-backend.onrender.com/api/users/' + userId;
+    const apiUrl = `https://resin-backend.onrender.com/api/users/${userId}`;
+
     const response = await axios.put(apiUrl, updatedData, {
       headers: {
         Authorization: `Bearer ${token}`,
         ...headers,
       },
     });
-    const getMeResponse = await axios.get(`${api}/me`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setUser(getMeResponse.data);
-    localStorage.setItem('user', JSON.stringify(getMeResponse.data));
-    return response.data;
+
+    // Update the user state with the new data
+    const updatedUser = response.data.user;
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+
+    return updatedUser;
   } catch (error) {
-    console.error('Failed to edit user', error);
+    console.error('Error during editUser:', error.response?.data || error.message);
     throw error;
+  } finally {
+    setUserLoading(false);
   }
 };
 
@@ -197,6 +203,7 @@ const resetPassword = async (token, newPassword) => {
     <UserContext.Provider
       value={{
         user,
+        setUser,
         users,
         loginUser,
         logoutUser,
@@ -210,7 +217,8 @@ const resetPassword = async (token, newPassword) => {
         addNewUser,
         forgotPassword,
         // resetUserPassword,
-        resetPassword
+        resetPassword,
+        userLoading
       }}
     >
       {children}
