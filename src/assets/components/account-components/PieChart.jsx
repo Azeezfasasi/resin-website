@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Pie } from 'react-chartjs-2'; // Import Pie instead of Bar
+import { Chart as ChartJS, ArcElement, Title, Tooltip, Legend } from 'chart.js'; // Import ArcElement
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(ArcElement, Title, Tooltip, Legend); // Register ArcElement
 
-const OrderStatusChart = ({ orders }) => {
+const PieChart = ({ orders }) => {
     const [chartData, setChartData] = useState({
         labels: [],
         datasets: [
             {
                 label: 'Order Statuses',
                 data: [],
-                backgroundColor: [], // Initialize as an empty array
+                backgroundColor: [],
             },
         ],
     });
@@ -26,7 +26,6 @@ const OrderStatusChart = ({ orders }) => {
             const labels = Object.keys(statusCounts);
             const data = Object.values(statusCounts);
 
-            // Generate unique colors
             const colors = generateUniqueColors(labels.length);
 
             setChartData({
@@ -35,7 +34,7 @@ const OrderStatusChart = ({ orders }) => {
                     {
                         label: 'Order Statuses',
                         data: data,
-                        backgroundColor: colors, // Use the generated colors
+                        backgroundColor: colors,
                     },
                 ],
             });
@@ -44,22 +43,20 @@ const OrderStatusChart = ({ orders }) => {
 
     const generateUniqueColors = (count) => {
         const colors = [
-            'rgba(255, 99, 132, 0.5)',   // Red
-            'rgba(54, 162, 235, 0.5)',   // Blue
-            'rgba(255, 206, 86, 0.5)',   // Yellow
-            'rgba(75, 192, 192, 0.5)',   // Green
-            'rgba(153, 102, 255, 0.5)',  // Purple
-            'rgba(255, 159, 64, 0.5)',   // Orange
-            'rgba(199, 211, 233, 0.5)',  // Light Blue
-            'rgba(179, 229, 252, 0.5)',  // Very Light Blue
-            'rgba(240, 98, 146, 0.5)',  // Light Pink
-            'rgba(129, 212, 250, 0.5)',  // Another Light Blue
-            'rgba(255, 183, 77, 0.5)',  // Light Orange
-            'rgba(174, 213, 129, 0.5)',  // Light Green
-
+            'rgba(255, 99, 132, 0.5)',
+            'rgba(54, 162, 235, 0.5)',
+            'rgba(255, 206, 86, 0.5)',
+            'rgba(75, 192, 192, 0.5)',
+            'rgba(153, 102, 255, 0.5)',
+            'rgba(255, 159, 64, 0.5)',
+            'rgba(199, 211, 233, 0.5)',
+            'rgba(179, 229, 252, 0.5)',
+            'rgba(240, 98, 146, 0.5)',
+            'rgba(129, 212, 250, 0.5)',
+            'rgba(255, 183, 77, 0.5)',
+            'rgba(174, 213, 129, 0.5)',
         ];
 
-        // If you have more statuses than colors, you can expand this array or use a color generation library.
         if (count > colors.length) {
             console.warn("More order statuses than color available");
         }
@@ -79,10 +76,7 @@ const OrderStatusChart = ({ orders }) => {
         },
     };
 
-    return <div className='w-full h-full'><Bar options={options} data={chartData} /></div>
+    return <div className='w-full rounded h-full flex flex-col items-center mx-auto border'><Pie options={options} data={chartData} /></div> // Render Pie chart
 };
 
-export default OrderStatusChart;
-
-
-
+export default PieChart;

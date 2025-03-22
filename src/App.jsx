@@ -29,6 +29,7 @@ import CategoryProducts from "./app/CategoryProducts";
 import Wishlist from "./app/Wishlist";
 import OrderSuccess from "./app/OrderSuccess";
 import CustomerOrder from "./app/CustomerOrder";
+import ShippingDetails from "./app/ShippingDetails";
 
 function App() {
   return (
@@ -68,6 +69,7 @@ function App() {
           <Route path="/app/usermanagement" element={<ProtectedRoute><UserManagement /></ProtectedRoute>} />
           <Route path="/app/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
           <Route path="/app/customerorder" element={<ProtectedRoute><CustomerOrder /></ProtectedRoute>} />
+          <Route path="/app/shippingdetails" element={<ProtectedRoute><ShippingDetails /></ProtectedRoute>} />
         </Routes>
       </Router>
     </>

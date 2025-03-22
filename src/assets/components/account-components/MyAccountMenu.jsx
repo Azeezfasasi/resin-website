@@ -210,15 +210,15 @@ function MyAccountMenu() {
           </NavLink>
 
           <NavLink
-            to=""
+            to="/app/shippingdetails"
             className={({ isActive }) =>
               `flex items-center p-4 dark:hover:bg-gray-700 ${
                 isActive ? "bg-gray-200 dark:bg-gray-700" : ""
               }`
             }
           >
-            <i className="fa-solid fa-cart-arrow-down"></i>
-            {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Shipping Address</span>}
+            <i className="fa-solid fa-location-dot"></i>
+            {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Billing Address</span>}
           </NavLink>
 
           <NavLink

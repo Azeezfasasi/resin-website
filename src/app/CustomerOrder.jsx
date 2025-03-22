@@ -130,9 +130,9 @@ const CustomerOrder = () => {
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center overflow-y-scroll h-[100vh] pt-[50px] pb-[50px] z-[99999]">
                     <div className="bg-white p-6 rounded-md shadow-lg w-[95%] lg:w-full max-w-2xl mt-[120px]">
-                        <div className='flex flex-row justify-between items-center'>
+                        <div className='flex flex-row-reverse justify-between items-center mb-[30px]'>
                             <h2 className="text-2xl font-semibold mb-4">Order Details</h2>
-                            <img src={resin} alt="Resin Logo" />
+                            <img src={resin} alt="Resin Logo" className='ml-[-40px]' />
                         </div>
                         {selectedOrder && (
                             <div>

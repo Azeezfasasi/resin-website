@@ -120,13 +120,10 @@ const Order = () => {
                             <tr>
                                 <th className="py-2 px-4 border-b">Order Number</th>
                                 <th className="py-2 px-4 border-b">Customer Name</th>
-                                <th className="py-2 px-4 border-b">Customer Email</th>
                                 <th className="py-2 px-4 border-b">Customer Phone</th>
                                 <th className="py-2 px-4 border-b">Order Date</th>
                                 <th className="py-2 px-4 border-b">Product Name</th>
                                 <th className="py-2 px-4 border-b">Amount</th>
-                                <th className="py-2 px-4 border-b">Shipping Address</th>
-                                <th className="py-2 px-4 border-b">Shipping State</th>
                                 <th className="py-2 px-4 border-b">Actions</th>
                                 <th className="py-2 px-4 border-b">Order Status</th>
                             </tr>
@@ -136,13 +133,10 @@ const Order = () => {
                                 <tr key={index} className="hover:bg-gray-50">
                                     <td className="py-2 px-4 border-b">{order.orderNumber}</td>
                                     <td className="py-2 px-4 border-b">{order.firstName} {order.lastName || 'Ordered Via Whatsapp'}</td>
-                                    <td className="py-2 px-4 border-b">{order.email || 'Ordered Via Whatsapp'}</td>
                                     <td className="py-2 px-4 border-b">{order.phone || 'Ordered Via Whatsapp'}</td>
                                     <td className="py-2 px-4 border-b">{new Date(order.orderDate).toLocaleDateString()}</td>
                                     <td className="py-2 px-4 border-b">{order.productName}</td>
                                     <td className="py-2 px-4 border-b">₦{order.amount}</td>
-                                    <td className="py-2 px-4 border-b">{order.streetAddress || 'Ordered Via Whatsapp'}</td>
-                                    <td className="py-2 px-4 border-b">{order.state || 'Ordered Via Whatsapp'}</td>
                                     <td className="py-2 px-4 border-b">
                                         <button onClick={() => openModal(order)} className="bg-yellow-900 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">View</button>
                                     </td>
@@ -182,9 +176,9 @@ const Order = () => {
         {isModalOpen && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center overflow-y-scroll h-[100vh] pt-[50px] pb-[50px] z-[99999]">
                 <div className="bg-white p-6 rounded-md shadow-lg w-[95%] lg:w-full max-w-2xl mt-[120px]">
-                    <div className='flex flex-row justify-between items-center'>
+                    <div className='flex flex-row-reverse justify-between items-center mb-[30px]'>
                         <h2 className="text-2xl font-semibold mb-4">Order Details</h2>
-                        <img src={resin} alt="Resin Logo" />
+                        <img src={resin} alt="Resin Logo" className='ml-[-40px]' />
                     </div>
                     {selectedOrder && (
                         <div>
