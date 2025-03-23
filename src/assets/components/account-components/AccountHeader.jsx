@@ -5,13 +5,37 @@ import user1 from '../../images/user1.svg';
 import profile from '../../images/profile.png';
 import { UserContext } from '../context-api/user-context/UserContext';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function AccountHeader() {
     const { user, logoutUser } = useContext(UserContext);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const navigate = useNavigate();
-    
+    const [profileImageUrl, setProfileImageUrl] = useState(null);
+    const token = localStorage.getItem('token');
 
+    useEffect(() => {
+        if (user && user.profileImage) {
+            setProfileImageUrl(user.profileImage);
+        } else {
+            const fetchProfileImage = async () => {
+                try {
+                    const response = await axios.get('https://resin-backend.onrender.com/api/users/me', {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    });
+                    setProfileImageUrl(response.data.profileImage);
+                } catch (error) {
+                    console.error('Error fetching profile image:', error);
+                    setProfileImageUrl(profile); // Use default profile image on error
+                }
+            };
+
+            fetchProfileImage();
+        }
+    }, [user, token]);
+    
     const toggleDropdown = () => {
       setIsDropdownOpen(!isDropdownOpen);
     };
@@ -47,7 +71,7 @@ function AccountHeader() {
                     <div className="relative">
                         <img
                             className="rounded-[50%] w-[40px] h-[40px] lg:w-[50px] lg:h-[50px] object-cover"
-                            src={user?.profileImage || profile}
+                            src={profileImageUrl || profile}
                             alt="Profile"
                         />
                     </div>

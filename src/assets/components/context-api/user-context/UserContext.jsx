@@ -6,7 +6,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   // const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]); // Store all users (admin feature)
-  const [userLoading, setUserLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [user, setUser] = useState(() => {
     // Load user from localStorage on page load
@@ -16,23 +16,34 @@ export const UserProvider = ({ children }) => {
 
   const api = 'https://resin-backend.onrender.com/api/users'; // Update with your backend URL
 
-  // Load user data from local storage on initial render
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+useEffect(() => {
+  const storedUser = localStorage.getItem('user');
+  if (storedUser) {
+    const parsedUser = JSON.parse(storedUser);
+    if (parsedUser._id) {
+      setUser(parsedUser);
+    } 
+    else {
+      // console.error("User ID is missing from localStorage.");
+      // logoutUser();
     }
-  }, []);
+  }
+}, []);
+
 
   // Login User
-  const loginUser = async (data) => {
+const loginUser = async (data) => {
   try {
       const response = await axios.post("https://resin-backend.onrender.com/api/users/login", data);
 
-      if (response.data && response.data.token) {
+      if (response.data && response.data.token && response.data.user) {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("user", JSON.stringify(response.data.user));
+          console.log("User data saved to localStorage:", response.data.user); // Add this line
           setUser(response.data.user);
+          console.log("User set in context:", response.data.user); // Add this line
+      } else {
+        console.log("Login response missing user or token:", response.data);
       }
       return response.data;
   } catch (error) {
@@ -70,32 +81,33 @@ export const UserProvider = ({ children }) => {
       console.error('Failed to fetch users', error);
     }
   };
+  
 
-  // Edit User Details
+// Edit User Details
 const editUser = async (userId, updatedData, headers = {}) => {
-  setUserLoading(true);
+  setIsLoading(true);
   try {
-    const token = localStorage.getItem('token');
-    const apiUrl = `https://resin-backend.onrender.com/api/users/${userId}`;
-
-    const response = await axios.put(apiUrl, updatedData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        ...headers,
-      },
-    });
-
-    // Update the user state with the new data
-    const updatedUser = response.data.user;
-    setUser(updatedUser);
-    localStorage.setItem('user', JSON.stringify(updatedUser));
-
-    return updatedUser;
+      const token = localStorage.getItem('token');
+      const response = await axios.put(
+          `${api}/${userId}`,
+          updatedData,
+          {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+                  ...headers,
+              },
+          }
+      );
+      if (response.data.user) {
+          setUser(response.data.user);
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          console.log("User set in context:", response.data.user);
+      }
+      return response.data.user;
   } catch (error) {
-    console.error('Error during editUser:', error.response?.data || error.message);
-    throw error;
+      throw error;
   } finally {
-    setUserLoading(false);
+      setIsLoading(false);
   }
 };
 
@@ -218,7 +230,8 @@ const resetPassword = async (token, newPassword) => {
         forgotPassword,
         // resetUserPassword,
         resetPassword,
-        userLoading
+        isLoading,
+        setIsLoading
       }}
     >
       {children}
