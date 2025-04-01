@@ -4,7 +4,7 @@ import axios from "axios";
 export const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
-    const [products, setProducts] = useState();
+    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -23,10 +23,10 @@ const ProductProvider = ({ children }) => {
                 setLoading(false);
             }
         };
-
         fetchProducts();
-    }, [api]);
+    }, []);
 
+    // Create a new product with variants
     const addProduct = async (newProduct) => {
         try {
             const response = await axios.post(api, newProduct, {
@@ -34,23 +34,28 @@ const ProductProvider = ({ children }) => {
                     "Content-Type": "multipart/form-data",
                 },
             });
-            const updatedProducts = await axios.get(api);
-            // setProducts(updatedProducts.data);
             setProducts((prev) => [...prev, response.data]);
         } catch (err) {
-            setError(err);
+            console.error("Error adding product:", err); // Log the full error
+            if (err.response) {
+                console.error("Backend error data:", err.response.data); 
+            }
+            setError("Failed to add product. Please try again.");
+            return { error: err.response?.data?.message || "Failed to add product" };
         }
     };
 
+    // Delete a product
     const deleteProduct = async (id) => {
         try {
             await axios.delete(`${api}/${id}`);
-            setProducts((prevProducts) => prevProducts.filter((product) => product._id !== id));
+            setProducts((prev) => prev.filter((product) => product._id !== id));
         } catch (err) {
             setError(err);
         }
     };
 
+    // Update product details (including variants)
     const updateProduct = async (formData) => {
         try {
             const response = await axios.put(`${api}/${formData.get("_id")}`, formData, {
@@ -65,9 +70,46 @@ const ProductProvider = ({ children }) => {
             setError("Failed to update product. Please try again.");
         }
     };
-    
+
+    // Add a variant to an existing product
+    const addVariant = async (productId, newVariant) => {
+        try {
+            const response = await axios.put(`${api}/${productId}/add-variant`, newVariant, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            setProducts((prev) => prev.map((p) => (p._id === productId ? response.data : p)));
+        } catch (err) {
+            setError(err);
+        }
+    };
+
+    // Remove a variant from a product
+    const removeVariant = async (productId, variantId) => {
+        try {
+            const response = await axios.put(`${api}/${productId}/remove-variant`, { variantId }, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            setProducts((prev) => prev.map((p) => (p._id === productId ? response.data : p)));
+        } catch (err) {
+            setError(err);
+        }
+    };
+
     return (
-        <ProductContext.Provider value={{ products, addProduct, deleteProduct, updateProduct, loading, error }}>
+        <ProductContext.Provider value={{
+            products,
+            addProduct,
+            deleteProduct,
+            updateProduct,
+            addVariant,
+            removeVariant,
+            loading,
+            error,
+        }}>
             {children}
         </ProductContext.Provider>
     );

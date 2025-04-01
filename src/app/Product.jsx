@@ -115,7 +115,7 @@ return (
                                 <img src={product.images[0]} alt={product.name} className='w-[200px] h-[150px] object-contain rounded-md' />
                             )}
                             <p className='text-sm font-semibold'>{product.name}</p>
-                            <div>₦ {product.price}</div>
+                            <div>₦ {product.basePrice}</div>
                             <div className='font-semibold'>{product.category}</div>
                             <div className='flex flex-row gap-2'>
                                 <Link to={`/app/editproduct/${product._id}`} className='bg-transparent border border-solid border-gray-500 text-black px-4 py-2 rounded-md mt-2 hover:bg-yellow-800 hover:text-white'><i className='fa fa-pencil'></i></Link>

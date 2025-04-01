@@ -18,17 +18,20 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (product) => {
-    setCart((prevCart) => {
-        const existingItem = prevCart.find((item) => item._id === product._id);
-        if (existingItem) {
-            return prevCart.map((item) =>
-                item._id === product._id ? { ...item, quantity: item.quantity + 1 } : item
-            );
-        } else {
-            return [...prevCart, { ...product, quantity: 1 }]; // Ensure quantity is 1
-        }
-    });
+const addToCart = (product) => {
+  setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item._id === product._id && JSON.stringify(item.selectedVariant) === JSON.stringify(product.selectedVariant));
+
+      if (existingItem) {
+          return prevCart.map((item) =>
+              item._id === product._id && JSON.stringify(item.selectedVariant) === JSON.stringify(product.selectedVariant)
+                  ? { ...item, quantity: item.quantity + 1 }
+                  : item
+          );
+      } else {
+          return [...prevCart, { ...product, quantity: 1 }];
+      }
+  });
 };
 
 const updateQuantity = (productId, quantity) => {

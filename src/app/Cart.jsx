@@ -36,7 +36,7 @@ const Cart = () => {
           if (isNaN(quantity) || quantity < 0) { // Check for invalid quantities
               return total;
           }
-          return total + item.price * quantity;
+          return total + item.basePrice * quantity;
       }, 0);
   };
 
@@ -81,7 +81,7 @@ const Cart = () => {
               items: cart.map(item => ({
                   productId: item._id,
                   quantity: item.quantity,
-                  price: item.price,
+                  price: item.basePrice,
                   name: item.name,
               })),
               shippingAddress: shippingAddress,
@@ -148,7 +148,15 @@ const Cart = () => {
                                         />
                                         <div className="w-full inline-block">
                                             <h3 className="font-semibold">{item.name}</h3>
-                                            <p>Price: ₦{item.price}</p>
+                                            <p>Price: ₦{item.basePrice}</p>
+
+                                            {/* Display Selected Variants */}
+                                            {item.selectedVariant && (
+                                                <p className="text-sm text-gray-600">
+                                                    Variantions: {Object.entries(item.selectedVariant).map(([name, value]) => `${name}: ${value}`).join(', ')}
+                                                </p>
+                                            )}
+
                                             <input
                                                 type="number"
                                                 value={item.quantity}
@@ -156,6 +164,7 @@ const Cart = () => {
                                                 className="w-[20%] border p-1 mr-2"
                                                 defaultValue={1}
                                             />
+
                                             <button onClick={() => removeFromCart(item._id)} className="bg-red-500 text-white p-1 rounded ml-[100px] lg:ml-[180px]">
                                                 Remove
                                             </button>
@@ -180,7 +189,7 @@ const Cart = () => {
                     <Login />
                     <button onClick={() => {
                         // Redirect to login/register page or show a modal
-                        // Example: navigate('/login');
+                        navigate('/app/cart');
                         setStep(3)
                     }} className="bg-blue-500 text-white p-2 mt-4 rounded">Continue as Guest (Skip Login)</button>
                 </div>
@@ -285,10 +294,19 @@ const Cart = () => {
                             </thead>
                             <tbody>
                                 {cart.map((item) => (
+                                <>
                                     <tr key={item._id}>
                                         <td className="py-2">{item.name} x {item.quantity}</td>
-                                        <td className="py-2 text-right">₦{item.price * item.quantity}</td>
+                                        <td className="py-2 text-right">₦{item.basePrice * item.quantity}</td>
                                     </tr>
+
+                                    {/* Display Selected Variants */}
+                                    {item.selectedVariant && (
+                                        <p className="text-sm text-gray-600">
+                                            Variants: {Object.entries(item.selectedVariant).map(([name, value]) => `${name}: ${value}`).join(', ')}
+                                        </p>
+                                    )}
+                                </>
                                 ))}
                                 <tr>
                                     <td className="py-2 font-semibold">Subtotal</td>

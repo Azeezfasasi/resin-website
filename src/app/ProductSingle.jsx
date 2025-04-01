@@ -19,6 +19,7 @@ const ProductSingle = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [popup, setPopup] = useState({ show: false, product: null });
+    const [selectedVariants, setSelectedVariants] = useState({});
 
     // Find the product when the component mounts or when products list changes
     useEffect(() => {
@@ -28,19 +29,56 @@ const ProductSingle = () => {
         }
     }, [id, products]);
 
-    const handleAddToCart = (product) => {
-        addToCart(product);
-        setPopup({ show: true, product });
+    // const handleAddToCart = (product) => {
+    //     addToCart(product);
+    //     setPopup({ show: true, product });
+    // };
+    const handleAddToCart = (product, variant) => {
+        const productToAdd = {
+            ...product,
+            selectedVariant: variant,
+        };
+        addToCart(productToAdd);
+        setPopup({ show: true, product: productToAdd });
     };
 
-    const handleBuyNow = (product) => {
-        addToCart(product);
+    // const handleBuyNow = (product) => {
+    //     addToCart(product);
+    //     navigate("/app/cart");
+    // };
+    const handleBuyNow = (product, variant) => {
+        const productToAdd = {
+            ...product,
+            selectedVariant: variant,
+        };
+        addToCart(productToAdd);
         navigate("/app/cart");
     };
 
     const closePopup = () => {
         setPopup({ show: false, product: null });
     };
+
+    // Function to handle variant selection
+    const handleVariantSelect = (variantName, variantValue) => {
+        setSelectedVariants({
+            ...selectedVariants,
+            [variantName]: variantValue,
+        });
+    };
+
+    // Find the selected variant object based on the selected variants
+    const getSelectedVariant = () => {
+        if (!product || !product.variants) return null;
+
+        return product.variants.find(variant => {
+            return Object.entries(selectedVariants).every(([name, value]) => {
+                return variant.name === name && variant.value === value;
+            });
+        });
+    };
+
+    const selectedVariant = getSelectedVariant();
 
     // Handle Recently Viewed Products
     useEffect(() => {
@@ -65,7 +103,7 @@ const ProductSingle = () => {
         };
 
         const whatsappNumber = "2348184128107";
-        const whatsappMessage = `Hello Resin By Saidat! I am interested in purchasing the following product:\n\n- Name: ${product.name}\n- Order Number: ${orderDetails.orderNumber}\n- Short Description: ${product.shortDescription || "No description available"}\n- Price: ₦${product.price}\n- Category: ${product.category || "No category available"}\n- Product Description: ${product.longDescription || "No detailed description available"}\n\n - Product Link: ${window.location.href}`;
+        const whatsappMessage = `Hello Resin By Saidat! I am interested in purchasing the following product:\n\n- Name: ${product.name}\n- Order Number: ${orderDetails.orderNumber}\n- Short Description: ${product.shortDescription || "No description available"}\n- Price: ₦${product.basePrice}\n- Category: ${product.category || "No category available"}\n- Product Description: ${product.longDescription || "No detailed description available"}\n\n - Product Link: ${window.location.href}`;
         const encodedMessage = encodeURIComponent(whatsappMessage);
         const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
         window.open(whatsappURL, "_blank");
@@ -167,6 +205,11 @@ return (
                         </>
                     )}
 
+                    <div className="mb-0 lg:mb-2 flex flex-row justify-start items-center gap-1">
+                        <h2 className="text-lg font-bold">Category:</h2>
+                        <p>{product.category || "No category available"}</p>
+                    </div>
+
                     {/* Product Description */}
                     <div className="border mt-5 pl-2 hidden lg:block pb-2">
                         <div className="text-[26px] font-bold">Product Details</div>
@@ -178,18 +221,47 @@ return (
                     <div className="w-full lg:w-1/2">
                         <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
                         <p className="text-gray-700 mb-4">{product.shortDescription}</p>
-                        <p className="text-xl font-semibold mb-4">₦{product.price}</p>
-                        <div className="mb-6 flex flex-row justify-start items-center gap-1">
-                            <h2 className="text-lg font-bold">Category:</h2>
-                            <p>{product.category || "No category available"}</p>
+                        <p className="text-xl font-semibold mb-4">₦{product.basePrice}</p>
+
+                        <div className="w-[45%] mt-6">
+                            {product?.variants && product.variants.length > 0 && (
+                                <div className="mb-6">
+                                    <h2 className="text-lg font-semibold">Variation Available:</h2>
+                                    {product.variants.reduce((uniqueNames, variant) => {
+                                        if (!uniqueNames.includes(variant.name)) {
+                                            uniqueNames.push(variant.name);
+                                        }
+                                        return uniqueNames;
+                                    }, []).map(variantName => (
+                                        <div key={variantName} className="mb-2">
+                                            <label className="block text-sm font-medium text-yellow-950">{variantName.replace(/\b\w/g, (char) => char.toUpperCase())}:</label>
+                                            <select
+                                                value={selectedVariants[variantName] || ''}
+                                                onChange={(e) => handleVariantSelect(variantName, e.target.value)}
+                                                className="w-full border rounded-md p-2"
+                                            >
+                                                <option value="">Select {variantName}</option>
+                                                {product.variants
+                                                    .filter(variant => variant.name === variantName)
+                                                    .map(variant => (
+                                                        <option key={variant.value} value={variant.value}>
+                                                            {variant.value}
+                                                        </option>
+                                                    ))}
+                                            </select>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
+
                         {/* Add to Cart Button */}
-                        <button className="bg-yellow-900 text-white py-2 px-4 rounded hover:bg-yellow-600 transition-colors mb-3" onClick={() => handleAddToCart(product)}>Add to Cart</button>
+                        <button className="bg-yellow-900 text-white py-2 px-4 rounded hover:bg-yellow-600 transition-colors mb-3" onClick={() => handleAddToCart(product, selectedVariant)}>Add to Cart</button>
                         <br />
                         {/* WhatsApp Button */}
                         <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-400 transition-colors mb-3" onClick={() => handleOrderViaWhatsApp(product)}><i className="fa-brands fa-whatsapp"></i> Order Via WhatsApp</button>
                         <br />
-                        <Link to="/app/cart" onClick={() => handleBuyNow(product)} className="bg-yellow-900 text-white py-2 px-4 rounded hover:bg-yellow-600 transition-colors" >Buy Now</Link>
+                        <Link to="/app/cart" onClick={() => handleBuyNow(product, selectedVariant)} className="bg-yellow-900 text-white py-2 px-4 rounded hover:bg-yellow-600 transition-colors" >Buy Now</Link>
                     </div>
 
                     {/* Product Description */}
