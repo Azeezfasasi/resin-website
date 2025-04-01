@@ -153,8 +153,11 @@ const Cart = () => {
                                             {/* Display Selected Variants */}
                                             {item.selectedVariant && (
                                                 <p className="text-sm text-gray-600">
-                                                    Variantions: {Object.entries(item.selectedVariant).map(([name, value]) => `${name}: ${value}`).join(', ')}
-                                                </p>
+                                                <span className='font-semibold text-gray-800'>Variants:</span> {Object.entries(item.selectedVariant)
+                                                    .filter(([key]) => key !== '_id')
+                                                    .map(([name, value]) => `${name}: ${value}`)
+                                                    .join(', ')}
+                                            </p>
                                             )}
 
                                             <input
@@ -303,7 +306,10 @@ const Cart = () => {
                                     {/* Display Selected Variants */}
                                     {item.selectedVariant && (
                                         <p className="text-sm text-gray-600">
-                                            Variants: {Object.entries(item.selectedVariant).map(([name, value]) => `${name}: ${value}`).join(', ')}
+                                            Variants: {Object.entries(item.selectedVariant)
+                                                .filter(([key]) => key !== '_id')
+                                                .map(([name, value]) => `${name}: ${value}`)
+                                                .join(', ')}
                                         </p>
                                     )}
                                 </>
