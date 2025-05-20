@@ -32,7 +32,7 @@ const ResinRegistrationForm = () => {
     const whatsappNumber = "2348184128107";
 
     // Construct the WhatsApp message
-    const whatsappMessage = `Hello Resin By Saidat! I want to register for the \"Learn to Make Resin\" workshop. Here are my details:\n\n- Name: ${name}\n- Email: ${email}\n- Phone: ${phone}\n- WhatsApp: ${whatsapp}\n- Age: ${age}\n- Address: ${address}\n- Message: ${message || "No additional message"}\n\n This form was submited on Resin By Saidat website (www.resinbysaidat.com.ng)`;
+    const whatsappMessage = `Hello Resin By Saidat! I want to register for the \"Resin Art Training\" workshop. Here are my details:\n\n- Name: ${name}\n- Email: ${email}\n- Phone: ${phone}\n- WhatsApp: ${whatsapp}\n- Age: ${age}\n- Address: ${address}\n- Message: ${message || "No additional message"}\n\n This form was submited on Resin By Saidat website (https://resinbysaidat.netlify.app/#/app/resinregistrationform)`;
 
     // Encode the message for the URL
     const encodedMessage = encodeURIComponent(whatsappMessage);
@@ -54,7 +54,7 @@ const ResinRegistrationForm = () => {
       <TopHeader />
       <MainHeader />
       <div className="max-w-[95%] md:max-w-lg mx-auto p-6 bg-gray-100 rounded-lg shadow-md mt-[40px] mb-[60px]">
-        <h2 className="text-2xl font-bold text-center mb-6">Register for "Learn to Make Resin" Workshop</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">Register for "Resin Art Training" Workshop</h2>
         {submitted ? (
           <div className="text-center">
             <h3 className="text-xl font-semibold">Thank you for registering!</h3>
@@ -85,7 +85,7 @@ const ResinRegistrationForm = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                placeholder="your email"
+                placeholder="Your email"
                 autoComplete="email"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
@@ -127,7 +127,7 @@ const ResinRegistrationForm = () => {
                 value={formData.age}
                 onChange={handleChange}
                 required
-                placeholder="You can use age range"
+                placeholder="This is optional"
                 autoComplete="age"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
