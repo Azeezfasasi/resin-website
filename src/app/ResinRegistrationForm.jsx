@@ -8,42 +8,79 @@ import WhatsAppChatRibbon from "../assets/components/home-components/WhatsappCha
 const ResinRegistrationForm = () => {
   const [formData, setFormData] = useState({
     name: "",
+    gender: "",
     email: "",
     phone: "",
-    message: "",
     whatsapp: "",
-    age: "",
-    address: "",
+    message: "",
+    experience: "",
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError("");
 
-    const { name, email, phone, message, whatsapp, age, address } = formData;
+    // Map frontend fields to backend fields (all required by schema)
+    const payload = {
+      name: formData.name,
+      gender: formData.gender,
+      email: formData.email,
+      phone: formData.phone,
+      whatsapp: formData.whatsapp,
+      message: formData.message,
+      experience: formData.experience,
+    };
 
-    // Replace with your WhatsApp number
-    const whatsappNumber = "2348184128107";
-
-    // Construct the WhatsApp message
-    const whatsappMessage = `Hello Resin By Saidat! I want to register for the \"Resin Art Training\" workshop. Here are my details:\n\n- Name: ${name}\n- Email: ${email}\n- Phone: ${phone}\n- WhatsApp: ${whatsapp}\n- Age: ${age}\n- Address: ${address}\n- Message: ${message || "No additional message"}\n\n This form was submited on Resin By Saidat website (https://resinbysaidat.netlify.app/#/app/resinregistrationform)`;
-
-    // Encode the message for the URL
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-
-    // Construct the WhatsApp URL
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-    // Open WhatsApp
-    window.open(whatsappURL, "_blank");
-
-    setSubmitted(true);
+    try {
+      const response = await fetch("https://resin-backend.onrender.com/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "Registration failed");
+      }
+      // WhatsApp integration
+      const whatsappNumber = "2348125925447";
+      const whatsappMessage =
+        `New Resin Art Training Registration:%0A` +
+        `Name: ${formData.name}%0A` +
+        `Gender: ${formData.gender}%0A` +
+        `Email: ${formData.email}%0A` +
+        `Phone: ${formData.phone}%0A` +
+        `WhatsApp: ${formData.whatsapp}%0A` +
+        `Experience: ${formData.experience}%0A` +
+        `Message: ${formData.message}`;
+      window.open(
+        `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`,
+        "_blank"
+      );
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        gender: "",
+        email: "",
+        phone: "",
+        whatsapp: "",
+        message: "",
+        experience: "",
+      });
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -62,6 +99,9 @@ const ResinRegistrationForm = () => {
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
+            {error && (
+              <div className="mb-4 text-red-600 text-center">{error}</div>
+            )}
             <div className="mb-4">
               <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name:</label>
               <input
@@ -75,6 +115,16 @@ const ResinRegistrationForm = () => {
                 autoCapitalize="name"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-1">Gender:</label>
+              <select name="gender" id="gender" value={formData.gender}
+                onChange={handleChange} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                <option value="">Select your gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
             <div className="mb-4">
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email:</label>
@@ -119,47 +169,32 @@ const ResinRegistrationForm = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-1">Age:</label>
-              <input
-                type="text"
-                id="age"
-                name="age"
-                value={formData.age}
-                onChange={handleChange}
-                required
-                placeholder="This is optional"
-                autoComplete="age"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              />
+              <label htmlFor="experience" className="block text-sm font-medium text-gray-700 mb-1">What is your experience with Resin?</label>
+              <select name="experience" id="experience" value={formData.experience}
+                onChange={handleChange} required className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                <option value="">Choose Experience</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Expert">Expert</option>
+              </select>
             </div>
             <div className="mb-4">
-              <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">Address:</label>
-              <textarea
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                autoComplete="address"
-                placeholder="Your address"
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Additional Message:</label>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">What would you like to learn:</label>
               <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Enter an additional message or information"
+                placeholder="Describe what you would like to learn in the workshop"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
             <button
               type="submit"
               className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              disabled={loading}
             >
-              Submit
+              {loading ? "Submitting..." : "Submit"}
             </button>
           </form>
         )}

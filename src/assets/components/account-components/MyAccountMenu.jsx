@@ -132,6 +132,18 @@ function MyAccountMenu() {
           </NavLink>
 
           <NavLink
+            to="/app/registrationdetails"
+            className={({ isActive }) =>
+              `flex items-center p-4 dark:hover:bg-gray-700 ${
+                isActive ? "bg-gray-200 dark:bg-gray-700" : ""
+              }`
+            }
+          >
+            <i className="fa-solid fa-shop"></i>
+            {isMenuOpen && <span className="ml-4 text-gray-700 dark:text-gray-300">Registration Details</span>}
+          </NavLink>
+
+          <NavLink
             to="/app/usermanagement"
             className={({ isActive }) =>
               `flex items-center p-4 dark:hover:bg-gray-700 ${
