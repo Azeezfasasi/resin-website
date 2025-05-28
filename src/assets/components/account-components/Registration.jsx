@@ -88,14 +88,14 @@ function Registration() {
             <tbody>
               {currentRegistrations.map((reg) => (
                 <tr key={reg._id} className="even:bg-gray-50">
-                  <td className="px-2 py-1 border">{reg.name}</td>
+                  <td className="px-2 py-1 border min-w-[200px]">{reg.name}</td>
                   <td className="px-2 py-1 border">{reg.gender}</td>
                   <td className="px-2 py-1 border">{reg.email}</td>
                   <td className="px-2 py-1 border">{reg.phone}</td>
                   <td className="px-2 py-1 border">{reg.whatsapp}</td>
                   <td className="px-2 py-1 border">{reg.experience}</td>
-                  <td className="px-2 py-1 border text-nowrap">{reg.message}</td>
-                  <td className="px-2 py-1 border">{reg.createdAt ? new Date(reg.createdAt).toLocaleString() : ''}</td>
+                  <td className="px-2 py-1 border min-w-[500px] text-wrap">{reg.message}</td>
+                  <td className="px-2 py-1 border min-w-[100px]">{reg.createdAt ? new Date(reg.createdAt).toLocaleString() : ''}</td>
                 </tr>
               ))}
             </tbody>
