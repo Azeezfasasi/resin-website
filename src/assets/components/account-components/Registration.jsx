@@ -52,6 +52,25 @@ function Registration() {
       {!loading && !error && registrations.length > 0 && (
         <>
         <div className="mb-2 font-semibold text-blue-700">Total Registrations: {registrations.length}</div>
+
+        {/* Navigation buttons */}
+          <div className="flex justify-center items-center gap-4 mt-2 mb-2">
+          <button
+            onClick={handleBack}
+            disabled={currentPage === 1}
+            className={`px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
+            Back
+          </button>
+          <span>Page {currentPage} of {totalPages}</span>
+          <button
+            onClick={handleNext}
+            disabled={currentPage === totalPages}
+            className={`px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
+            Next
+          </button>
+        </div>
         <div className="overflow-x-scroll w-[100%] lg:w-[100%] mb-4">
           <table className="min-w-full border border-gray-300">
             <thead>
