@@ -82,7 +82,7 @@ function Registration() {
             </tbody>
           </table>
         </div>
-        <div className="flex justify-center items-center gap-4 mt-2 mb-[50px] md:mb-0">
+        <div className="flex justify-center items-center gap-4 mt-2 mb-[150px] md:mb-0">
           <button
             onClick={handleBack}
             disabled={currentPage === 1}
