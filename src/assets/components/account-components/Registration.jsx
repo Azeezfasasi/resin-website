@@ -94,7 +94,7 @@ function Registration() {
                   <td className="px-2 py-1 border">{reg.phone}</td>
                   <td className="px-2 py-1 border">{reg.whatsapp}</td>
                   <td className="px-2 py-1 border">{reg.experience}</td>
-                  <td className="px-2 py-1 border min-w-[500px] text-wrap">{reg.message}</td>
+                  <td className="px-2 py-1 border min-w-[400px] md:min-w-[500px] text-wrap">{reg.message}</td>
                   <td className="px-2 py-1 border min-w-[100px]">{reg.createdAt ? new Date(reg.createdAt).toLocaleString() : ''}</td>
                 </tr>
               ))}
