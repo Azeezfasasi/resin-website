@@ -54,7 +54,7 @@ const ResinRegistrationForm = () => {
       // WhatsApp integration
       const whatsappNumber = "2348125925447";
       const whatsappMessage =
-        `New Resin Art Training Registration:%0A` +
+        `Hi ResinBySaidat, I am interested in the Resin Art Training. Below are my details:%0A` +
         `Name: ${formData.name}%0A` +
         `Gender: ${formData.gender}%0A` +
         `Email: ${formData.email}%0A` +
